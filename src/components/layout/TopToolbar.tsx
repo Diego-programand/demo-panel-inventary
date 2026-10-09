@@ -12,11 +12,12 @@ import {
   ChevronDownIcon,
   WarehouseIcon,
 } from "@/components/icons";
+import { MovementModal } from "@/components/operations/MovementModal";
 
 const SECTION_LABELS: Record<string, string> = {
   overview: "Resumen General",
   catalog: "Catálogo",
-  movements: "Movimientos",
+  movements: "Movimientos & Kardex",
   warehouses: "Almacenes",
   alerts: "Alertas",
   analytics: "Analítica",
@@ -37,6 +38,7 @@ export function TopToolbar() {
   } = useDashboard();
 
   const [isWarehouseMenuOpen, setIsWarehouseMenuOpen] = useState(false);
+  const [isMovementModalOpen, setIsMovementModalOpen] = useState(false);
   const warehouseMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -169,11 +171,22 @@ export function TopToolbar() {
         </button>
 
         {/* Quick Action Button */}
-        <button className={styles.primaryButton} type="button">
+        <button
+          className={styles.primaryButton}
+          type="button"
+          onClick={() => setIsMovementModalOpen(true)}
+          title="Registrar una nueva operación en el Kardex"
+        >
           <PlusIcon size={14} />
           <span>Nuevo Movimiento</span>
         </button>
       </div>
+
+      {/* Movement Modal */}
+      <MovementModal
+        isOpen={isMovementModalOpen}
+        onClose={() => setIsMovementModalOpen(false)}
+      />
     </header>
   );
 }

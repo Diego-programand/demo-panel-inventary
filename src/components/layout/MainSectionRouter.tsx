@@ -4,6 +4,7 @@ import React from "react";
 import { useDashboard } from "@/core/context/DashboardContext";
 import { OverviewContent } from "@/components/dashboard/OverviewContent";
 import { CatalogContent } from "@/components/catalog/CatalogContent";
+import { MovementsContent } from "@/components/operations/MovementsContent";
 
 export function MainSectionRouter() {
   const { section, nicheProfile, setSection } = useDashboard();
@@ -16,6 +17,8 @@ export function MainSectionRouter() {
       return <OverviewContent />;
 
     case "movements":
+      return <MovementsContent />;
+
     case "warehouses":
     case "alerts":
     case "analytics":
