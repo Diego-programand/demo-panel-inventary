@@ -1,0 +1,142 @@
+.alertsCard {
+  background: var(--apple-bg-surface);
+  backdrop-filter: var(--apple-blur-subtle);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-lg);
+  padding: 24px;
+  box-shadow: var(--apple-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color var(--apple-transition-fast), box-shadow var(--apple-transition-fast);
+}
+
+.alertsCard:hover {
+  border-color: var(--apple-border-medium);
+  box-shadow: var(--apple-shadow-md);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleArea {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--apple-text-primary);
+}
+
+.alertCountBadge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--apple-radius-pill);
+  background: var(--apple-danger);
+  color: #ffffff;
+}
+
+.emptyState {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--apple-text-secondary);
+  font-size: 13.5px;
+  background: var(--apple-bg-elevated);
+  border-radius: var(--apple-radius-md);
+  border: 1px dashed var(--apple-border-subtle);
+}
+
+.alertsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alertItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--apple-bg-elevated);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-md);
+  transition: all var(--apple-transition-fast);
+}
+
+.alertItem:hover {
+  border-color: var(--apple-border-medium);
+  background: var(--apple-bg-surface-solid);
+}
+
+.alertItemCritical {
+  border-left: 3px solid var(--apple-danger) !important;
+}
+
+.alertItemLow {
+  border-left: 3px solid var(--apple-warning) !important;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.itemName {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--apple-text-primary);
+}
+
+.itemSub {
+  font-size: 11.5px;
+  color: var(--apple-text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stockNumbers {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stockCurrent {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.reorderButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: var(--apple-radius-pill);
+  background: var(--apple-accent-subtle);
+  color: var(--apple-accent);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid rgba(41, 151, 255, 0.2);
+  transition: all var(--apple-transition-fast);
+  cursor: pointer;
+}
+
+.reorderButton:hover {
+  background: var(--apple-accent);
+  color: #ffffff;
+}
+
+.reorderSuccess {
+  background: var(--apple-success-subtle) !important;
+  color: var(--apple-success) !important;
+  border-color: rgba(52, 199, 89, 0.3) !important;
+}

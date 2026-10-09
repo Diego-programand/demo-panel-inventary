@@ -1,0 +1,138 @@
+.distributionCard {
+  background: var(--apple-bg-surface);
+  backdrop-filter: var(--apple-blur-subtle);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-lg);
+  padding: 24px;
+  box-shadow: var(--apple-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: border-color var(--apple-transition-fast), box-shadow var(--apple-transition-fast);
+}
+
+.distributionCard:hover {
+  border-color: var(--apple-border-medium);
+  box-shadow: var(--apple-shadow-md);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--apple-text-primary);
+}
+
+.subtitle {
+  font-size: 12.5px;
+  color: var(--apple-text-secondary);
+}
+
+.contentWrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.donutWrapper {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+}
+
+.donutSvg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.centerLabel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.centerCount {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--apple-text-primary);
+  line-height: 1;
+}
+
+.centerSubtext {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--apple-text-tertiary);
+  margin-top: 4px;
+}
+
+.categoriesList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.categoryRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.categoryMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.categoryName {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--apple-text-primary);
+  font-weight: 500;
+}
+
+.categoryDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.categoryPercent {
+  font-size: 12px;
+  color: var(--apple-text-secondary);
+}
+
+.progressTrack {
+  width: 100%;
+  height: 5px;
+  background: var(--apple-bg-secondary);
+  border-radius: var(--apple-radius-pill);
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  border-radius: var(--apple-radius-pill);
+  transition: width var(--apple-transition-normal);
+}
+
+@media (max-width: 600px) {
+  .contentWrapper {
+    flex-direction: column;
+  }
+}

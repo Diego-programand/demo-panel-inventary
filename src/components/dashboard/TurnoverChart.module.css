@@ -1,0 +1,107 @@
+.chartCard {
+  background: var(--apple-bg-surface);
+  backdrop-filter: var(--apple-blur-subtle);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-lg);
+  padding: 24px;
+  box-shadow: var(--apple-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: border-color var(--apple-transition-fast), box-shadow var(--apple-transition-fast);
+}
+
+.chartCard:hover {
+  border-color: var(--apple-border-medium);
+  box-shadow: var(--apple-shadow-md);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleArea {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--apple-text-primary);
+}
+
+.subtitle {
+  font-size: 12.5px;
+  color: var(--apple-text-secondary);
+}
+
+.timeframeSelector {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--apple-bg-elevated);
+  padding: 3px;
+  border-radius: var(--apple-radius-sm);
+  border: 1px solid var(--apple-border-subtle);
+}
+
+.timeframeButton {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--apple-text-secondary);
+  transition: all var(--apple-transition-fast);
+}
+
+.timeframeButton:hover {
+  color: var(--apple-text-primary);
+}
+
+.timeframeActive {
+  background: var(--apple-bg-surface-solid);
+  color: var(--apple-text-primary) !important;
+  box-shadow: var(--apple-shadow-xs);
+  font-weight: 600;
+}
+
+.chartContainer {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.svgCanvas {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--apple-border-subtle);
+  font-size: 12px;
+  color: var(--apple-text-secondary);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}

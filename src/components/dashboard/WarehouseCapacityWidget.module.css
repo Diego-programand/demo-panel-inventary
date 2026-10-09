@@ -1,0 +1,129 @@
+.capacityCard {
+  background: var(--apple-bg-surface);
+  backdrop-filter: var(--apple-blur-subtle);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-lg);
+  padding: 24px;
+  box-shadow: var(--apple-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color var(--apple-transition-fast), box-shadow var(--apple-transition-fast);
+}
+
+.capacityCard:hover {
+  border-color: var(--apple-border-medium);
+  box-shadow: var(--apple-shadow-md);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleArea {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--apple-text-primary);
+}
+
+.subtitle {
+  font-size: 12.5px;
+  color: var(--apple-text-secondary);
+}
+
+.warehousesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.warehouseCard {
+  background: var(--apple-bg-elevated);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all var(--apple-transition-fast);
+  cursor: pointer;
+}
+
+.warehouseCard:hover {
+  border-color: var(--apple-border-medium);
+  background: var(--apple-bg-surface-solid);
+}
+
+.warehouseActive {
+  border-color: var(--apple-accent) !important;
+  background: var(--apple-accent-subtle) !important;
+}
+
+.warehouseHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.warehouseName {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--apple-text-primary);
+}
+
+.warehouseCode {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 6px;
+  background: var(--apple-bg-secondary);
+  border-radius: 4px;
+  color: var(--apple-text-secondary);
+}
+
+.occupancyArea {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.occupancyLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--apple-text-secondary);
+}
+
+.occupancyTrack {
+  width: 100%;
+  height: 6px;
+  background: var(--apple-bg-secondary);
+  border-radius: var(--apple-radius-pill);
+  overflow: hidden;
+}
+
+.occupancyBar {
+  height: 100%;
+  border-radius: var(--apple-radius-pill);
+  transition: width var(--apple-transition-normal);
+}
+
+.zonesCount {
+  font-size: 11px;
+  color: var(--apple-text-tertiary);
+}
+
+@media (max-width: 800px) {
+  .warehousesGrid {
+    grid-template-columns: 1fr;
+  }
+}

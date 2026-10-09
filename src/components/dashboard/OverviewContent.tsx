@@ -12,6 +12,10 @@ import {
   AnalyticsIcon,
   MovementsIcon,
 } from "@/components/icons";
+import { TurnoverChart } from "./TurnoverChart";
+import { CategoryDistribution } from "./CategoryDistribution";
+import { CriticalAlertsWidget } from "./CriticalAlertsWidget";
+import { WarehouseCapacityWidget } from "./WarehouseCapacityWidget";
 
 export function OverviewContent() {
   const {
@@ -35,7 +39,6 @@ export function OverviewContent() {
     [getMetricsByNiche, nicheId, warehouseId]
   );
 
-  // Recent movements filtered for preview
   const recentMovements = useMemo(() => {
     return movements.slice(0, 5);
   }, [movements]);
@@ -96,7 +99,7 @@ export function OverviewContent() {
         </div>
       </section>
 
-      {/* 2. Live KPI Cards Grid (Directly fed from Store) */}
+      {/* 2. Live KPI Cards Grid */}
       <section className={styles.kpiGrid}>
         <div className={styles.kpiCard}>
           <div className={styles.kpiHeader}>
@@ -168,7 +171,19 @@ export function OverviewContent() {
         </div>
       </section>
 
-      {/* 3. Interactive Niche Selector Strip for Client Demonstrations */}
+      {/* 3. Apple-Grade Visualizations Grid: Turnover Chart & Category Donut */}
+      <section className={styles.splitSection}>
+        <TurnoverChart />
+        <CategoryDistribution />
+      </section>
+
+      {/* 4. Action & Capacity Section: Alerts & Warehouses */}
+      <section className={styles.splitSection}>
+        <CriticalAlertsWidget />
+        <WarehouseCapacityWidget />
+      </section>
+
+      {/* 5. Interactive Niche Selector Strip for Demonstrations */}
       <section className={styles.nicheTabsSection}>
         <div className={styles.sectionHeaderRow}>
           <div>
@@ -222,7 +237,7 @@ export function OverviewContent() {
         </div>
       </section>
 
-      {/* 4. Split Section: Live Table Preview & Kardex Activity */}
+      {/* 6. Live Table Preview & Kardex Activity Split */}
       <section className={styles.splitSection}>
         {/* Table Preview */}
         <div className={styles.tableCard}>
