@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from "react";
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, useSyncExternalStore } from "react";
 import { NicheId, NicheProfile } from "@/core/types/niche";
 import { getNicheProfile, NICHE_PROFILES } from "@/niches";
 import { LocationWarehouse } from "@/core/types/inventory";
@@ -41,29 +41,59 @@ interface DashboardContextValue {
   setIsCommandPaletteOpen: (open: boolean) => void;
 }
 
+// External store synchronization for localStorage
+function getInitialNiche(): NicheId {
+  if (typeof window === "undefined") return "retail_fashion";
+  try {
+    const val = localStorage.getItem("app-niche") as NicheId;
+    if (val && NICHE_PROFILES[val]) return val;
+  } catch {}
+  return "retail_fashion";
+}
+
+function getInitialTheme(): ThemeMode {
+  if (typeof window === "undefined") return "dark";
+  try {
+    const val = localStorage.getItem("app-theme") as ThemeMode;
+    if (val === "light" || val === "dark") return val;
+  } catch {}
+  return "dark";
+}
+
+let cachedNiche: NicheId = getInitialNiche();
+let cachedTheme: ThemeMode = getInitialTheme();
+const storeListeners = new Set<() => void>();
+
+function notifyStoreChange() {
+  storeListeners.forEach((listener) => listener());
+}
+
+function subscribeToStore(listener: () => void) {
+  storeListeners.add(listener);
+  return () => {
+    storeListeners.delete(listener);
+  };
+}
+
 const DashboardContext = createContext<DashboardContextValue | null>(null);
 
 export function DashboardProvider({ children }: { children: React.ReactNode }) {
   const [section, setSection] = useState<DashboardSection>("overview");
-  const [nicheId, setNicheIdState] = useState<NicheId>(() => {
-    if (typeof window !== "undefined") {
-      const savedNiche = localStorage.getItem("app-niche") as NicheId;
-      if (savedNiche && NICHE_PROFILES[savedNiche]) {
-        return savedNiche;
-      }
-    }
-    return "retail_fashion";
-  });
   const [warehouseId, setWarehouseId] = useState<string>("all");
-  const [theme, setTheme] = useState<ThemeMode>(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("app-theme") as ThemeMode;
-      if (savedTheme) return savedTheme;
-    }
-    return "dark";
-  });
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState<boolean>(false);
+
+  const nicheId = useSyncExternalStore<NicheId>(
+    subscribeToStore,
+    () => cachedNiche,
+    () => "retail_fashion" as NicheId
+  );
+
+  const theme = useSyncExternalStore<ThemeMode>(
+    subscribeToStore,
+    () => cachedTheme,
+    () => "dark" as ThemeMode
+  );
 
   // Sync theme with document root attribute
   useEffect(() => {
@@ -71,17 +101,25 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
   }, [theme]);
 
   const toggleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const next = prev === "dark" ? "light" : "dark";
-      localStorage.setItem("app-theme", next);
-      document.documentElement.setAttribute("data-theme", next);
-      return next;
-    });
+    const next = cachedTheme === "dark" ? "light" : "dark";
+    cachedTheme = next;
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem("app-theme", next);
+        document.documentElement.setAttribute("data-theme", next);
+      } catch {}
+    }
+    notifyStoreChange();
   }, []);
 
   const setNicheId = useCallback((id: NicheId) => {
-    setNicheIdState(id);
-    localStorage.setItem("app-niche", id);
+    cachedNiche = id;
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem("app-niche", id);
+      } catch {}
+    }
+    notifyStoreChange();
   }, []);
 
   const nicheProfile = useMemo(() => getNicheProfile(nicheId), [nicheId]);
