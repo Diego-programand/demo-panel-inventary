@@ -8,7 +8,8 @@
         "start": "next start",
         "lint": "eslint",
         "harness:verify": "node scripts/verify-harness.mjs",
-        "verify:all": "npm run harness:verify && npm run lint && npm run build"
+        "verify:data": "node scripts/verify-data-store.mjs",
+        "verify:all": "npm run harness:verify && npm run verify:data && npm run lint && npm run build"
     },
     "dependencies":  {
                          "next":  "16.4.0",

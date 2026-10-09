@@ -111,6 +111,8 @@ const requiredDomainFiles = [
   "src/core/types/inventory.ts",
   "src/core/types/niche.ts",
   "src/niches/index.ts",
+  "src/core/data/mock-datasets.ts",
+  "src/core/store/inventory-store.tsx",
   "src/styles/tokens.css",
   "src/styles/globals.css"
 ];

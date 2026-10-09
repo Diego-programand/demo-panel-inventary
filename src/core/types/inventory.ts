@@ -4,6 +4,8 @@
  * ========================================================
  */
 
+import { NicheId } from "./niche";
+
 export type StockStatus = 
   | 'optimal'      // En nivel saludable
   | 'low_stock'    // Cerca o debajo del umbral mínimo
@@ -30,6 +32,7 @@ export interface LocationWarehouse {
 
 export interface InventoryItemCore {
   id: string;
+  nicheId: NicheId;
   sku: string;
   barcode?: string;
   name: string;

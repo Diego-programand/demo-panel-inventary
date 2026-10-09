@@ -224,12 +224,167 @@
   font-weight: 500;
 }
 
+/* Split Section: Table Preview & Kardex Audit */
+.splitSection {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.tableCard {
+  background: var(--apple-bg-surface);
+  backdrop-filter: var(--apple-blur-subtle);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-lg);
+  padding: 24px;
+  box-shadow: var(--apple-shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.appleTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.appleTable th {
+  padding: 10px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--apple-text-tertiary);
+  border-bottom: 1px solid var(--apple-border-subtle);
+  white-space: nowrap;
+}
+
+.appleTable td {
+  padding: 12px;
+  border-bottom: 1px solid var(--apple-border-subtle);
+  color: var(--apple-text-primary);
+  vertical-align: middle;
+}
+
+.appleTable tr:last-child td {
+  border-bottom: none;
+}
+
+.appleTable tr:hover td {
+  background: var(--apple-bg-elevated);
+}
+
+.itemSku {
+  font-size: 11px;
+  color: var(--apple-text-tertiary);
+  font-family: monospace;
+}
+
+/* Status Badges */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: var(--apple-radius-pill);
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.statusOptimal {
+  background: var(--apple-success-subtle);
+  color: var(--apple-success);
+}
+
+.statusLowStock {
+  background: var(--apple-warning-subtle);
+  color: var(--apple-warning);
+}
+
+.statusCritical {
+  background: var(--apple-danger-subtle);
+  color: var(--apple-danger);
+}
+
+/* Kardex Activity Feed */
+.kardexList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kardexItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--apple-radius-md);
+  background: var(--apple-bg-elevated);
+  border: 1px solid var(--apple-border-subtle);
+  transition: all var(--apple-transition-fast);
+}
+
+.kardexItem:hover {
+  border-color: var(--apple-border-medium);
+  background: var(--apple-bg-surface-solid);
+}
+
+.kardexIconWrapper {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--apple-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kardexDetails {
+  flex: 1;
+  min-width: 0;
+}
+
+.kardexTitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--apple-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kardexMeta {
+  font-size: 11px;
+  color: var(--apple-text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.kardexQty {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+
 @media (max-width: 1100px) {
   .kpiGrid {
     grid-template-columns: repeat(2, 1fr);
   }
   .nicheTabsGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .splitSection {
+    grid-template-columns: 1fr;
   }
 }
 
