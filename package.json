@@ -2,12 +2,14 @@
     "name":  "demo-panel-inventary",
     "version":  "0.1.0",
     "private":  true,
-    "scripts":  {
-                    "dev":  "next dev",
-                    "build":  "next build",
-                    "start":  "next start",
-                    "lint":  "eslint"
-                },
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint",
+        "harness:verify": "node scripts/verify-harness.mjs",
+        "verify:all": "npm run harness:verify && npm run lint && npm run build"
+    },
     "dependencies":  {
                          "next":  "16.4.0",
                          "react":  "19.3.0",

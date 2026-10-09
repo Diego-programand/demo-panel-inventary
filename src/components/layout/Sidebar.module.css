@@ -1,0 +1,208 @@
+.sidebar {
+  width: 270px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--apple-bg-surface);
+  backdrop-filter: var(--apple-blur-thick);
+  -webkit-backdrop-filter: var(--apple-blur-thick);
+  border-right: 1px solid var(--apple-border-subtle);
+  user-select: none;
+  z-index: 40;
+  transition: transform var(--apple-transition-normal);
+}
+
+.brandHeader {
+  padding: 24px 20px 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--apple-border-subtle);
+}
+
+.logoIconWrapper {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--apple-radius-md);
+  background: linear-gradient(135deg, var(--apple-accent), #0051a8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+}
+
+.brandInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandTitle {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--apple-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brandSubtitle {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--apple-text-secondary);
+  font-weight: 500;
+}
+
+/* Niche Switcher Container */
+.nicheSelectorArea {
+  padding: 16px 16px 12px 16px;
+}
+
+.nicheLabel {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--apple-text-tertiary);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nicheSelectDropdown {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--apple-bg-elevated);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-md);
+  color: var(--apple-text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--apple-transition-fast);
+}
+
+.nicheSelectDropdown:hover {
+  border-color: var(--apple-border-medium);
+  background: var(--apple-bg-surface-solid);
+}
+
+.nicheIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nicheDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Navigation List */
+.navSection {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.navSectionLabel {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--apple-text-quaternary);
+  padding: 12px 10px 6px 10px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-radius: var(--apple-radius-sm);
+  color: var(--apple-text-secondary);
+  font-size: 13.5px;
+  font-weight: 450;
+  transition: all var(--apple-transition-fast);
+  cursor: pointer;
+}
+
+.navItem:hover {
+  background: var(--apple-bg-elevated);
+  color: var(--apple-text-primary);
+}
+
+.navItemActive {
+  background: var(--apple-accent);
+  color: #ffffff !important;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.25);
+}
+
+.navItemContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badgePill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--apple-radius-pill);
+  background: var(--apple-danger);
+  color: #ffffff;
+}
+
+.badgePillSubtle {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: var(--apple-radius-pill);
+  background: var(--apple-bg-secondary);
+  color: var(--apple-text-tertiary);
+}
+
+.navItemActive .badgePillSubtle {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Footer & System Info */
+.sidebarFooter {
+  padding: 16px;
+  border-top: 1px solid var(--apple-border-subtle);
+  background: var(--apple-bg-surface);
+}
+
+.warehousePill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: var(--apple-radius-sm);
+  background: var(--apple-bg-elevated);
+  border: 1px solid var(--apple-border-subtle);
+  font-size: 12px;
+  color: var(--apple-text-secondary);
+}
+
+.warehouseName {
+  font-weight: 500;
+  color: var(--apple-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}

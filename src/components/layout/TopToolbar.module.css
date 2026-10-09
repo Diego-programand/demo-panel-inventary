@@ -1,0 +1,178 @@
+.toolbar {
+  height: 60px;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: var(--apple-bg-surface);
+  backdrop-filter: var(--apple-blur-thick);
+  -webkit-backdrop-filter: var(--apple-blur-thick);
+  border-bottom: 1px solid var(--apple-border-subtle);
+  z-index: 30;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.menuButton {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--apple-radius-sm);
+  align-items: center;
+  justify-content: center;
+  color: var(--apple-text-primary);
+  background: var(--apple-bg-elevated);
+  border: 1px solid var(--apple-border-subtle);
+  cursor: pointer;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+}
+
+.breadcrumbRoot {
+  color: var(--apple-text-tertiary);
+  font-weight: 400;
+}
+
+.breadcrumbSeparator {
+  color: var(--apple-text-quaternary);
+  font-size: 12px;
+}
+
+.breadcrumbCurrent {
+  color: var(--apple-text-primary);
+  font-weight: 600;
+}
+
+/* Center Search Command Trigger */
+.searchTrigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--apple-bg-elevated);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-pill);
+  padding: 7px 16px;
+  width: 300px;
+  color: var(--apple-text-tertiary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--apple-transition-fast);
+}
+
+.searchTrigger:hover {
+  border-color: var(--apple-border-medium);
+  background: var(--apple-bg-surface-solid);
+  color: var(--apple-text-secondary);
+}
+
+.searchKbd {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 6px;
+  background: var(--apple-bg-secondary);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: 4px;
+  color: var(--apple-text-secondary);
+}
+
+/* Right Section Actions */
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.warehouseSelector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--apple-radius-sm);
+  background: var(--apple-bg-elevated);
+  border: 1px solid var(--apple-border-subtle);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--apple-text-primary);
+  cursor: pointer;
+}
+
+.syncIndicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--apple-text-secondary);
+  padding: 0 4px;
+}
+
+.syncDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--apple-success);
+  box-shadow: 0 0 6px var(--apple-success);
+}
+
+.iconButton {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--apple-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--apple-bg-elevated);
+  border: 1px solid var(--apple-border-subtle);
+  color: var(--apple-text-secondary);
+  transition: all var(--apple-transition-fast);
+  cursor: pointer;
+}
+
+.iconButton:hover {
+  color: var(--apple-text-primary);
+  border-color: var(--apple-border-medium);
+  background: var(--apple-bg-surface-solid);
+}
+
+.primaryButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--apple-radius-pill);
+  background: var(--apple-accent);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.25);
+  transition: all var(--apple-transition-fast);
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  background: var(--apple-accent-hover);
+  transform: translateY(-0.5px);
+}
+
+@media (max-width: 900px) {
+  .searchTrigger {
+    display: none;
+  }
+  .warehouseSelector {
+    display: none;
+  }
+  .menuButton {
+    display: flex;
+  }
+}

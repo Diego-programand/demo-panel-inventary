@@ -1,87 +1,248 @@
-.container {
+.dashboardContainer {
   display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background: radial-gradient(circle at 50% 0%, rgba(41, 151, 255, 0.08), transparent 50%),
-              var(--apple-bg-base);
+  flex-direction: column;
+  gap: 28px;
 }
 
-.heroCard {
-  max-width: 620px;
-  width: 100%;
+/* Header Greeting Banner */
+.welcomeBanner {
   background: var(--apple-bg-surface);
   backdrop-filter: var(--apple-blur-medium);
   -webkit-backdrop-filter: var(--apple-blur-medium);
   border: 1px solid var(--apple-border-subtle);
   border-radius: var(--apple-radius-xl);
-  padding: 40px;
-  box-shadow: var(--apple-shadow-lg);
-  text-align: center;
+  padding: 28px 32px;
+  box-shadow: var(--apple-shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
 }
 
-.badge {
+.welcomeBanner::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 300px;
+  height: 200%;
+  background: radial-gradient(circle, var(--accent-glow, rgba(0, 113, 227, 0.12)), transparent 70%);
+  pointer-events: none;
+}
+
+.welcomeText {
+  max-width: 680px;
+  position: relative;
+  z-index: 1;
+}
+
+.nicheBadge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
+  gap: 6px;
+  padding: 4px 12px;
   border-radius: var(--apple-radius-pill);
-  background: var(--apple-accent-subtle);
-  color: var(--apple-accent);
-  font-size: 13px;
-  font-weight: 500;
-  margin-bottom: 24px;
-  border: 1px solid rgba(41, 151, 255, 0.25);
-}
-
-.badgeDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--apple-accent);
-  box-shadow: 0 0 10px var(--apple-accent);
-}
-
-.title {
-  font-size: 32px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: -0.025em;
+  margin-bottom: 12px;
+  background: var(--apple-bg-elevated);
+  border: 1px solid var(--apple-border-subtle);
   color: var(--apple-text-primary);
+}
+
+.welcomeTitle {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--apple-text-primary);
+  margin-bottom: 8px;
+}
+
+.welcomeDesc {
+  font-size: 14.5px;
+  color: var(--apple-text-secondary);
+  line-height: 1.5;
+}
+
+.bannerControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* KPI Widgets Grid */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.kpiCard {
+  background: var(--apple-bg-surface);
+  backdrop-filter: var(--apple-blur-subtle);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-lg);
+  padding: 20px;
+  box-shadow: var(--apple-shadow-xs);
+  transition: transform var(--apple-transition-fast), box-shadow var(--apple-transition-fast);
+}
+
+.kpiCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--apple-shadow-md);
+  border-color: var(--apple-border-medium);
+}
+
+.kpiHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 12px;
 }
 
-.subtitle {
-  font-size: 16px;
+.kpiLabel {
+  font-size: 12.5px;
+  font-weight: 500;
   color: var(--apple-text-secondary);
-  line-height: 1.6;
-  margin-bottom: 32px;
 }
 
-.grid {
+.kpiIconWrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--apple-radius-sm);
+  background: var(--apple-bg-elevated);
+  border: 1px solid var(--apple-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--apple-text-primary);
+}
+
+.kpiValue {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--apple-text-primary);
+  margin-bottom: 8px;
+}
+
+.kpiTrend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--apple-success);
+}
+
+/* Niche Showcase Interactive Strip */
+.nicheTabsSection {
+  background: var(--apple-bg-surface);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-lg);
+  padding: 24px;
+}
+
+.sectionHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.sectionTitle {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--apple-text-primary);
+}
+
+.sectionSubtitle {
+  font-size: 13px;
+  color: var(--apple-text-secondary);
+}
+
+.nicheTabsGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  text-align: left;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
 }
 
-.statItem {
+.nicheTabCard {
   background: var(--apple-bg-elevated);
   border: 1px solid var(--apple-border-subtle);
   border-radius: var(--apple-radius-md);
   padding: 16px;
+  cursor: pointer;
+  transition: all var(--apple-transition-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.statLabel {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--apple-text-tertiary);
-  margin-bottom: 6px;
+.nicheTabCard:hover {
+  border-color: var(--apple-border-medium);
+  background: var(--apple-bg-surface-solid);
 }
 
-.statValue {
-  font-size: 18px;
+.nicheTabActive {
+  border-color: var(--apple-accent) !important;
+  background: var(--apple-accent-subtle) !important;
+}
+
+.nicheTabName {
+  font-size: 14.5px;
   font-weight: 600;
   color: var(--apple-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nicheTabDesc {
+  font-size: 12px;
+  color: var(--apple-text-secondary);
+  line-height: 1.4;
+}
+
+.customFieldsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.customFieldTag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: var(--apple-radius-pill);
+  background: var(--apple-bg-secondary);
+  color: var(--apple-text-secondary);
+  font-weight: 500;
+}
+
+@media (max-width: 1100px) {
+  .kpiGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .nicheTabsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .welcomeBanner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .kpiGrid {
+    grid-template-columns: 1fr;
+  }
+  .nicheTabsGrid {
+    grid-template-columns: 1fr;
+  }
 }
