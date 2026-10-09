@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import styles from "./Sidebar.module.css";
 import { useDashboard, DashboardSection } from "@/core/context/DashboardContext";
+import { useInventoryStore } from "@/core/store/inventory-store";
 import { NicheId } from "@/core/types/niche";
 import {
   OverviewIcon,
@@ -49,6 +50,10 @@ export function Sidebar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const { getItemsByNiche } = useInventoryStore();
+  const nicheItems = useMemo(() => getItemsByNiche(nicheId), [getItemsByNiche, nicheId]);
+  const criticalCount = useMemo(() => nicheItems.filter((i) => i.status === "critical").length, [nicheItems]);
+
   const navItems: NavItemConfig[] = [
     {
       id: "overview",
@@ -59,7 +64,7 @@ export function Sidebar() {
       id: "catalog",
       label: `Catálogo de ${nicheProfile.vocabulary.itemPlural}`,
       icon: <CatalogIcon size={18} />,
-      badge: 142,
+      badge: nicheItems.length,
       badgeType: "subtle",
     },
     {
@@ -78,7 +83,7 @@ export function Sidebar() {
       id: "alerts",
       label: "Alertas Críticas",
       icon: <AlertIcon size={18} />,
-      badge: 5,
+      badge: criticalCount > 0 ? criticalCount : undefined,
       badgeType: "danger",
     },
     {

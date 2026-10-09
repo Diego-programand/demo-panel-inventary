@@ -377,8 +377,11 @@ export function OverviewContent() {
                     <div className={styles.kardexTitle}>{mov.itemName}</div>
                     <div className={styles.kardexMeta}>
                       <span>{mov.referenceDocument}</span>
-                      <span>•</span>
-                      <span>{new Date(mov.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span>
+                      <span suppressHydrationWarning>
+                        {mov.timestamp.includes("T")
+                          ? mov.timestamp.split("T")[1].slice(0, 5)
+                          : "10:30"}
+                      </span>
                     </div>
                   </div>
 

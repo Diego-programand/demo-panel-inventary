@@ -1,0 +1,123 @@
+.actionBarContainer {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 14px 8px 20px;
+  background: var(--apple-bg-elevated);
+  backdrop-filter: var(--apple-blur-thick);
+  -webkit-backdrop-filter: var(--apple-blur-thick);
+  border: 1px solid var(--apple-border-medium);
+  border-radius: var(--apple-radius-pill);
+  box-shadow: var(--apple-shadow-modal);
+  animation: slideUpFloat 260ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpFloat {
+  from {
+    transform: translate(-50%, 40px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.countIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--apple-text-primary);
+}
+
+.countBadge {
+  background: var(--apple-accent);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  background: var(--apple-border-subtle);
+}
+
+.actionsGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.secondaryBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--apple-text-secondary);
+  background: var(--apple-bg-surface);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-pill);
+  cursor: pointer;
+  transition: all var(--apple-transition-fast);
+}
+
+.secondaryBtn:hover {
+  background: var(--apple-bg-secondary);
+  color: var(--apple-text-primary);
+}
+
+.primaryBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--apple-accent);
+  border: none;
+  border-radius: var(--apple-radius-pill);
+  cursor: pointer;
+  transition: all var(--apple-transition-fast);
+  box-shadow: 0 2px 6px rgba(0, 113, 227, 0.28);
+}
+
+.primaryBtn:hover {
+  background: var(--apple-accent-hover);
+  transform: translateY(-1px);
+}
+
+.clearBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--apple-text-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--apple-transition-fast);
+}
+
+.clearBtn:hover {
+  background: var(--apple-bg-secondary);
+  color: var(--apple-text-primary);
+}
