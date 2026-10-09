@@ -1,0 +1,87 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: radial-gradient(circle at 50% 0%, rgba(41, 151, 255, 0.08), transparent 50%),
+              var(--apple-bg-base);
+}
+
+.heroCard {
+  max-width: 620px;
+  width: 100%;
+  background: var(--apple-bg-surface);
+  backdrop-filter: var(--apple-blur-medium);
+  -webkit-backdrop-filter: var(--apple-blur-medium);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-xl);
+  padding: 40px;
+  box-shadow: var(--apple-shadow-lg);
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--apple-radius-pill);
+  background: var(--apple-accent-subtle);
+  color: var(--apple-accent);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  border: 1px solid rgba(41, 151, 255, 0.25);
+}
+
+.badgeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--apple-accent);
+  box-shadow: 0 0 10px var(--apple-accent);
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--apple-text-primary);
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--apple-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  text-align: left;
+}
+
+.statItem {
+  background: var(--apple-bg-elevated);
+  border: 1px solid var(--apple-border-subtle);
+  border-radius: var(--apple-radius-md);
+  padding: 16px;
+}
+
+.statLabel {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--apple-text-tertiary);
+  margin-bottom: 6px;
+}
+
+.statValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--apple-text-primary);
+}

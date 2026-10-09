@@ -1,0 +1,110 @@
+/* ========================================================
+   APPLE HUMAN INTERFACE GUIDELINES (HIG) - DESIGN TOKENS
+   ======================================================== */
+
+:root {
+  /* Surface & Backgrounds - Light Mode */
+  --apple-bg-base: #f5f5f7;
+  --apple-bg-surface: rgba(255, 255, 255, 0.78);
+  --apple-bg-surface-solid: #ffffff;
+  --apple-bg-elevated: rgba(255, 255, 255, 0.92);
+  --apple-bg-secondary: #e8e8ed;
+  --apple-bg-tertiary: #dfdfe4;
+
+  /* Typography Colors */
+  --apple-text-primary: #1d1d1f;
+  --apple-text-secondary: #6e6e73;
+  --apple-text-tertiary: #86868b;
+  --apple-text-quaternary: #aeaeb2;
+
+  /* Borders & Dividers */
+  --apple-border-subtle: rgba(0, 0, 0, 0.08);
+  --apple-border-medium: rgba(0, 0, 0, 0.14);
+  --apple-border-strong: rgba(0, 0, 0, 0.22);
+
+  /* Semantic & Accent Colors */
+  --apple-accent: #0071e3;
+  --apple-accent-hover: #0077ed;
+  --apple-accent-subtle: rgba(0, 113, 227, 0.12);
+  
+  --apple-success: #34c759;
+  --apple-success-subtle: rgba(52, 199, 89, 0.14);
+  
+  --apple-warning: #ff9500;
+  --apple-warning-subtle: rgba(255, 149, 0, 0.14);
+  
+  --apple-danger: #ff3b30;
+  --apple-danger-subtle: rgba(255, 59, 48, 0.14);
+  
+  --apple-indigo: #5856d6;
+  --apple-purple: #af52de;
+  --apple-teal: #30b0c7;
+
+  /* Elevation Shadows (Multi-layered subtle Apple shadows) */
+  --apple-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --apple-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --apple-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --apple-shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --apple-shadow-modal: 0 24px 64px rgba(0, 0, 0, 0.16), 0 8px 24px rgba(0, 0, 0, 0.06);
+
+  /* Blur Materials & Liquid Glass */
+  --apple-blur-subtle: blur(12px);
+  --apple-blur-medium: blur(24px) saturate(180%);
+  --apple-blur-thick: blur(40px) saturate(190%);
+
+  /* Border Radii (iOS / macOS continuous corner shapes) */
+  --apple-radius-sm: 8px;
+  --apple-radius-md: 12px;
+  --apple-radius-lg: 16px;
+  --apple-radius-xl: 20px;
+  --apple-radius-pill: 9999px;
+
+  /* Transitions */
+  --apple-transition-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  --apple-transition-normal: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  --apple-transition-slow: 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ========================================================
+   DARK MODE OVERRIDES
+   ======================================================== */
+[data-theme="dark"] {
+  --apple-bg-base: #000000;
+  --apple-bg-surface: rgba(28, 28, 30, 0.72);
+  --apple-bg-surface-solid: #1c1c1e;
+  --apple-bg-elevated: rgba(44, 44, 46, 0.85);
+  --apple-bg-secondary: #1c1c1e;
+  --apple-bg-tertiary: #2c2c2e;
+
+  --apple-text-primary: #f5f5f7;
+  --apple-text-secondary: #98989d;
+  --apple-text-tertiary: #6e6e73;
+  --apple-text-quaternary: #48484a;
+
+  --apple-border-subtle: rgba(255, 255, 255, 0.09);
+  --apple-border-medium: rgba(255, 255, 255, 0.16);
+  --apple-border-strong: rgba(255, 255, 255, 0.24);
+
+  --apple-accent: #2997ff;
+  --apple-accent-hover: #47a3ff;
+  --apple-accent-subtle: rgba(41, 151, 255, 0.16);
+
+  --apple-success: #30d158;
+  --apple-success-subtle: rgba(48, 209, 88, 0.16);
+
+  --apple-warning: #ff9f0a;
+  --apple-warning-subtle: rgba(255, 159, 10, 0.16);
+
+  --apple-danger: #ff453a;
+  --apple-danger-subtle: rgba(255, 69, 58, 0.16);
+
+  --apple-indigo: #5e5ce6;
+  --apple-purple: #bf5af2;
+  --apple-teal: #40c8e0;
+
+  --apple-shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --apple-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --apple-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.55);
+  --apple-shadow-lg: 0 16px 44px rgba(0, 0, 0, 0.65);
+  --apple-shadow-modal: 0 32px 80px rgba(0, 0, 0, 0.85);
+}

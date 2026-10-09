@@ -1,0 +1,67 @@
+@import "./tokens.css";
+
+/* Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--apple-bg-base);
+  color: var(--apple-text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color var(--apple-transition-normal), color var(--apple-transition-normal);
+}
+
+/* Tabular Numerals for Financial, Metrics, and Quantities */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Custom Minimalist Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--apple-border-subtle);
+  border-radius: var(--apple-radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--apple-border-medium);
+}
+
+/* Interactive Element Defaults */
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
