@@ -11,7 +11,8 @@
         "verify:data": "node scripts/verify-data-store.mjs",
         "verify:catalog": "node scripts/verify-catalog.mjs",
         "verify:ops": "node scripts/verify-operations.mjs",
-        "verify:all": "npm run harness:verify && npm run verify:data && npm run verify:catalog && npm run verify:ops && npm run lint && npm run build"
+        "verify:deploy": "node scripts/verify-deployment.mjs",
+        "verify:all": "npm run harness:verify && npm run verify:data && npm run verify:catalog && npm run verify:ops && npm run verify:deploy && npm run lint && npm run build"
     },
     "dependencies":  {
                          "next":  "16.4.0",

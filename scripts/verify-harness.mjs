@@ -36,7 +36,6 @@ function warn(msg) {
 console.log("\n\x1b[1m\x1b[36m INICIANDO COMPROBACIÓN DEL ARNÉS DE INGENIERÍA\x1b[0m\n");
 
 // 1. Verificación de Contratos Documentales
-console.log("\x1b[1m1. Verificando Contratos Documentales:\x1b[0m");
 const requiredDocs = [
   "AGENTS.md",
   "GEMINI.md",
@@ -44,8 +43,13 @@ const requiredDocs = [
   "docs/architecture/00-harness-manifesto.md",
   "docs/architecture/01-multi-niche-data-model.md",
   "docs/design-system/apple-hig-tokens.md",
-  "docs/roadmap/phased-execution-plan.md"
+  "docs/roadmap/phased-execution-plan.md",
+  "docs/specs/01-overview-dashboard.md",
+  "docs/specs/02-catalog-module.md",
+  "docs/specs/03-operations-kardex-module.md",
+  "docs/specs/04-vercel-deployment-guide.md"
 ];
+
 
 for (const doc of requiredDocs) {
   const fullPath = path.join(ROOT, doc);
@@ -114,7 +118,8 @@ const requiredDomainFiles = [
   "src/core/data/mock-datasets.ts",
   "src/core/store/inventory-store.tsx",
   "src/styles/tokens.css",
-  "src/styles/globals.css"
+  "src/styles/globals.css",
+  "vercel.json"
 ];
 
 for (const df of requiredDomainFiles) {
