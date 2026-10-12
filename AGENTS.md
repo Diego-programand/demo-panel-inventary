@@ -35,6 +35,8 @@ Estas habilidades son exclusivas de este proyecto y deben ser consultadas activa
 | **react-best-practices** | `.agents/skills/react-best-practices/` | 70 reglas de rendimiento de Vercel: eliminación de cascadas (waterfalls), memoización, optimización de bundles. |
 | **composition-patterns** | `.agents/skills/composition-patterns/` | Arquitectura de componentes compuestos, decoupling de estado y APIs limpias. |
 | **web-design-guidelines** | `.agents/skills/web-design-guidelines/` | Auditoría de lineamientos web y coherencia de interfaz. |
+| **responsive-design** | `.agents/skills/responsive-design/` | Estrategias responsivas no destructivas (Container Queries, Mobile-First, fluid clamp, preservando Apple HIG y Zero-Pill Badges). |
+| **find-skills** | `.agents/skills/find-skills/` | Descubrimiento, evaluación e instalación de skills del ecosistema abierto via CLI. |
 | **deploy-to-vercel** & **vercel-optimize** | `.agents/skills/deploy-to-vercel/`, `.agents/skills/vercel-optimize/` | Preparación para producción, velocidad de carga y deployment en Vercel. |
 
 ---
@@ -49,6 +51,7 @@ Estas habilidades son exclusivas de este proyecto y deben ser consultadas activa
   - Todo badge, tag de atributo, chip de nicho, indicador de estado y contador numérico **DEBE** ser un **cuadrado redondeado (*squircle card badge*)** con `border-radius: var(--apple-radius-badge)` (6px) o `var(--apple-radius-sm)` (8px), emulando la geometría y esquinas continuas de las tarjetas de métricas del resumen general.
   - Los badges numéricos (Sidebar, alertas, acciones por lote) deben conservar proporciones cuadradas redondeadas (`min-width: 19px–20px`, `height: 19px–20px`), nunca círculos ni píldoras.
   - Deben contar con bordes delimitadores ultra-sutiles (`1px solid var(--apple-border-subtle)` o bordes semánticos traslúcidos) y fondo con opacidad controlada.
+* **Reglas Inmutables de Responsividad y Frontend:** Consultar obligatoriamente [docs/design-system/responsive-rules.md](./docs/design-system/responsive-rules.md) antes de tocar estilos. Toda modificación debe preservar el diseño desktop sin roturas, aplicar adaptaciones quirúrgicas no destructivas, mantener touch targets mínimos de 44px en móviles y proteger el scroll horizontal en tablas.
 
 ---
 

@@ -176,3 +176,55 @@
     display: flex;
   }
 }
+
+@media (max-width: 640px) {
+  .toolbar {
+    padding: 0 16px;
+  }
+  .leftSection {
+    gap: 10px;
+    min-width: 0;
+  }
+  .breadcrumbs {
+    font-size: 12.5px;
+    min-width: 0;
+  }
+  .breadcrumbRoot {
+    max-width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .breadcrumbCurrent {
+    max-width: 110px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .syncIndicator span:not(.syncDot) {
+    display: none;
+  }
+  .syncIndicator {
+    padding: 0;
+  }
+  .rightSection {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .breadcrumbSeparator,
+  .breadcrumbRoot {
+    display: none;
+  }
+  .primaryButton {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    justify-content: center;
+    border-radius: var(--apple-radius-sm);
+  }
+  .primaryButton span {
+    display: none;
+  }
+}

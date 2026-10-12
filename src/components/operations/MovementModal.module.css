@@ -76,7 +76,7 @@
 .closeBtn {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: var(--apple-radius-sm);
   border: 1px solid var(--apple-border-subtle);
   background: var(--apple-bg-surface);
   color: var(--apple-text-secondary);
@@ -353,7 +353,7 @@
 .successIconCircle {
   width: 56px;
   height: 56px;
-  border-radius: 50%;
+  border-radius: var(--apple-radius-lg);
   background: var(--apple-success-subtle);
   color: var(--apple-success);
   display: flex;
@@ -374,4 +374,34 @@
   color: var(--apple-text-secondary);
   margin: 0;
   max-width: 320px;
+}
+
+@media (max-width: 640px) {
+  .modalOverlay {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .modalCard {
+    width: 100%;
+    max-height: 94vh;
+    border-radius: var(--apple-radius-lg);
+  }
+
+  .modalHeader {
+    padding: 16px 18px 12px 18px;
+  }
+
+  .formBody {
+    padding: 16px 18px;
+    gap: 14px;
+  }
+
+  .modalFooter {
+    padding: 12px 18px max(14px, env(safe-area-inset-bottom, 14px)) 18px;
+  }
+
+  .submitBtn {
+    padding: 11px 18px;
+  }
 }

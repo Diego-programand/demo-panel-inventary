@@ -108,3 +108,26 @@
   from { transform: scale(0.96) translateY(-8px); opacity: 0; }
   to { transform: scale(1) translateY(0); opacity: 1; }
 }
+
+@media (max-width: 640px) {
+  .overlay {
+    padding: 12px;
+    padding-top: 8vh;
+  }
+
+  .modal {
+    max-width: 100%;
+    border-radius: var(--apple-radius-md);
+  }
+
+  .inputWrapper {
+    padding: 12px 14px;
+  }
+
+  .modalFooter {
+    font-size: 10.5px;
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}

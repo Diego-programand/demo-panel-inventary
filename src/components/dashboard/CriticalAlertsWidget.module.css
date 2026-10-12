@@ -146,3 +146,18 @@
   color: var(--apple-success) !important;
   border-color: rgba(52, 199, 89, 0.3) !important;
 }
+
+@media (max-width: 540px) {
+  .widgetCard {
+    padding: 16px;
+  }
+  .alertItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .stockNumbers {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

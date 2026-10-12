@@ -65,6 +65,18 @@
   --apple-transition-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1);
   --apple-transition-normal: 240ms cubic-bezier(0.16, 1, 0.3, 1);
   --apple-transition-slow: 360ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Canonical Responsive Breakpoint Tokens (Reference) */
+  --apple-bp-sm: 640px;
+  --apple-bp-md: 768px;
+  --apple-bp-lg: 1024px;
+  --apple-bp-xl: 1280px;
+  --apple-bp-2xl: 1440px;
+
+  /* Fluid Spacing & Typography Clamps */
+  --apple-space-canvas: clamp(16px, 2.5vw, 32px);
+  --apple-header-title: clamp(20px, 2.2vw, 26px);
+  --apple-touch-target-min: 44px;
 }
 
 /* ========================================================

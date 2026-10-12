@@ -20,6 +20,7 @@ body {
   background-color: var(--apple-bg-base);
   color: var(--apple-text-primary);
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
   transition: background-color var(--apple-transition-normal), color var(--apple-transition-normal);
 }

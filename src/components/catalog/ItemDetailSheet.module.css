@@ -107,7 +107,7 @@
 .closeButton {
   width: 32px;
   height: 32px;
-  border-radius: 50%;
+  border-radius: var(--apple-radius-sm);
   border: 1px solid var(--apple-border-subtle);
   background: var(--apple-bg-surface);
   color: var(--apple-text-secondary);
@@ -364,4 +364,21 @@
 
 .reorderButton:active {
   transform: scale(0.98);
+}
+
+@media (max-width: 640px) {
+  .sheetContainer {
+    width: 100vw;
+    max-width: 100vw;
+    border-left: none;
+  }
+  .sheetHeader {
+    padding: 18px 20px 14px 20px;
+  }
+  .sheetBody {
+    padding: 16px 20px;
+  }
+  .sheetFooter {
+    padding: 14px 20px max(16px, env(safe-area-inset-bottom, 16px)) 20px;
+  }
 }

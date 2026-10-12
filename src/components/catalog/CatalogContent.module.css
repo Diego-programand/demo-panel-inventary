@@ -117,7 +117,7 @@
 .searchInput {
   width: 100%;
   padding: 9px 38px 9px 40px;
-  border-radius: var(--apple-radius-pill);
+  border-radius: var(--apple-radius-sm);
   border: 1px solid var(--apple-border-subtle);
   background: var(--apple-bg-elevated);
   color: var(--apple-text-primary);
@@ -297,6 +297,7 @@
 
 .catalogTable {
   width: 100%;
+  min-width: 760px;
   border-collapse: collapse;
   text-align: left;
   font-size: 13.5px;
@@ -552,4 +553,95 @@
 .resetFiltersBtn:hover {
   background: var(--apple-accent);
   color: #ffffff;
+}
+
+/* ========================================================
+   RESPONSIVE DESIGN ADAPTATIONS (Apple HIG & Container Strategy)
+   ======================================================== */
+@media (max-width: 900px) {
+  .catalogHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .headerStats {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+
+  .toolbarCard {
+    padding: 14px 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 22px;
+  }
+
+  .searchAndControlsRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .searchWrapper {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .controlsRight {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+
+  .dropdownSelect {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .facetsRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .categoryPills {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .categoryPills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .statusSegmented {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .statusSegmented::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tableCard {
+    border-radius: var(--apple-radius-md);
+  }
+
+  .tableWrapper {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .th, .td {
+    padding: 10px 12px;
+  }
 }

@@ -12,7 +12,7 @@
   backdrop-filter: var(--apple-blur-thick);
   -webkit-backdrop-filter: var(--apple-blur-thick);
   border: 1px solid var(--apple-border-medium);
-  border-radius: var(--apple-radius-pill);
+  border-radius: var(--apple-radius-lg);
   box-shadow: var(--apple-shadow-modal);
   animation: slideUpFloat 260ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -73,7 +73,7 @@
   color: var(--apple-text-secondary);
   background: var(--apple-bg-surface);
   border: 1px solid var(--apple-border-subtle);
-  border-radius: var(--apple-radius-pill);
+  border-radius: var(--apple-radius-sm);
   cursor: pointer;
   transition: all var(--apple-transition-fast);
 }
@@ -93,7 +93,7 @@
   color: #ffffff;
   background: var(--apple-accent);
   border: none;
-  border-radius: var(--apple-radius-pill);
+  border-radius: var(--apple-radius-sm);
   cursor: pointer;
   transition: all var(--apple-transition-fast);
   box-shadow: 0 2px 6px rgba(0, 113, 227, 0.28);
@@ -107,7 +107,7 @@
 .clearBtn {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  border-radius: var(--apple-radius-badge);
   border: none;
   background: transparent;
   color: var(--apple-text-tertiary);
@@ -121,4 +121,25 @@
 .clearBtn:hover {
   background: var(--apple-bg-secondary);
   color: var(--apple-text-primary);
+}
+
+@media (max-width: 640px) {
+  .actionBarContainer {
+    bottom: max(16px, env(safe-area-inset-bottom, 16px));
+    width: calc(100vw - 32px);
+    max-width: 420px;
+    padding: 8px 12px;
+    gap: 8px;
+    justify-content: space-between;
+  }
+
+  .countIndicator {
+    font-size: 12px;
+  }
+
+  .secondaryBtn,
+  .primaryBtn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
 }

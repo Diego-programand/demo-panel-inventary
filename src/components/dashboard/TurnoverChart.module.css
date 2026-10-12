@@ -105,3 +105,21 @@
   height: 8px;
   border-radius: 50%;
 }
+
+@media (max-width: 600px) {
+  .chartCard {
+    padding: 16px;
+  }
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .chartContainer {
+    height: 170px;
+  }
+  .legendRow {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}

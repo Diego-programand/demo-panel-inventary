@@ -251,6 +251,7 @@
 
 .appleTable {
   width: 100%;
+  min-width: 580px;
   border-collapse: collapse;
   font-size: 13px;
   text-align: left;
@@ -398,12 +399,22 @@
   .welcomeBanner {
     flex-direction: column;
     align-items: flex-start;
+    padding: 20px 18px;
     gap: 16px;
+  }
+  .welcomeTitle {
+    font-size: 21px;
   }
   .kpiGrid {
     grid-template-columns: 1fr;
   }
   .nicheTabsGrid {
     grid-template-columns: 1fr;
+  }
+  .tableCard {
+    padding: 16px;
+  }
+  .tableWrapper {
+    -webkit-overflow-scrolling: touch;
   }
 }
