@@ -41,14 +41,15 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 12px;
-  border-radius: var(--apple-radius-pill);
+  padding: 4px 10px;
+  border-radius: var(--apple-radius-badge);
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 12px;
   background: var(--apple-bg-elevated);
   border: 1px solid var(--apple-border-subtle);
   color: var(--apple-text-primary);
+  box-shadow: var(--apple-shadow-xs);
 }
 
 .welcomeTitle {
@@ -217,9 +218,10 @@
 
 .customFieldTag {
   font-size: 11px;
-  padding: 2px 8px;
-  border-radius: var(--apple-radius-pill);
+  padding: 3px 8px;
+  border-radius: var(--apple-radius-badge);
   background: var(--apple-bg-secondary);
+  border: 1px solid var(--apple-border-subtle);
   color: var(--apple-text-secondary);
   font-weight: 500;
 }
@@ -292,25 +294,29 @@
   align-items: center;
   gap: 5px;
   padding: 3px 8px;
-  border-radius: var(--apple-radius-pill);
+  border-radius: var(--apple-radius-badge);
   font-size: 11.5px;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
+  border: 1px solid transparent;
 }
 
 .statusOptimal {
   background: var(--apple-success-subtle);
   color: var(--apple-success);
+  border-color: rgba(48, 209, 88, 0.2);
 }
 
 .statusLowStock {
   background: var(--apple-warning-subtle);
   color: var(--apple-warning);
+  border-color: rgba(255, 159, 10, 0.2);
 }
 
 .statusCritical {
   background: var(--apple-danger-subtle);
   color: var(--apple-danger);
+  border-color: rgba(255, 69, 58, 0.2);
 }
 
 /* Kardex Activity Feed */

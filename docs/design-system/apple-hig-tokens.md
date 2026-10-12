@@ -98,7 +98,28 @@ Basado en las pautas oficiales de **Apple Human Interface Guidelines (HIG)** y l
    * Tarjetas con elevación sutil, números tabulares grandes, micrográficos de tendencia de chispa (*sparklines*), e indicadores de variación porcentual (+14.2% vs mes anterior).
 4. **Interactive Data Tables:**
    * Columnas ordenables con indicadores visuales claros.
-   * Estados de stock representados con píldoras de color semántico suave (*soft pill badges*).
+   * Estados de stock representados con badges cuadrados redondeados de color semántico suave (*squircle card badges* con `var(--apple-radius-badge): 6px`, en armonía con las tarjetas del resumen general).
    * Menú contextual de acciones rápidas (Ajustar Stock, Transferir, Ver Historial).
 5. **Modales & Sheets (Liquid Glass Sheets):**
    * Paneles deslizantes laterales o modales centrados con desenfoque de fondo dinámico para el registro rápido de entradas, salidas o nuevos productos.
+
+---
+
+## 4. Regla Mandatoria del Sistema de Diseño: Zero-Pill Badges (Badges Cuadrados Redondeados)
+
+> [!IMPORTANT]
+> **Norma Estricta del Sistema:** Queda terminantemente prohibido el uso de bordes de píldora extrema (`border-radius: 9999px` o `border-radius: 50%` en cápsula) para badges, tags, chips o contadores numéricos.
+
+### Directrices de Geometría y Estilo:
+1. **Concepción como Micro-Tarjetas (*Squircle Card Badges*):**
+   - Todo badge debe compartir la misma familia geométrica de las tarjetas de métricas del Resumen General (`.kpiCard`, `.nicheTabCard`).
+   - Se debe utilizar obligatoriamente el token `--apple-radius-badge: 6px` (o `--apple-radius-sm: 8px` en elementos de mayor padding).
+2. **Contadores Numéricos (Sidebar, Notificaciones, Selección por Lote):**
+   - Proporción cuadrada redondeada: `min-width: 19px–20px`, `height: 19px–20px`.
+   - `display: inline-flex; align-items: center; justify-content: center;`
+   - `border-radius: var(--apple-radius-badge);`
+3. **Badges de Estado, Operación y Chips de Nicho:**
+   - Tipografía tabular/semi-bold (`font-size: 11.5px–12px; font-weight: 600;`).
+   - Borde delimitador sutil de 1px (`border: 1px solid var(--apple-border-subtle)` o tinte semántico al 20%).
+   - Fondo semitraslúcido armónico con el color semántico de estado.
+

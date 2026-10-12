@@ -159,23 +159,36 @@
 .badgePill {
   font-size: 11px;
   font-weight: 600;
-  padding: 2px 7px;
-  border-radius: var(--apple-radius-pill);
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--apple-radius-badge);
   background: var(--apple-danger);
   color: #ffffff;
+  box-shadow: 0 1px 4px rgba(255, 69, 58, 0.25);
 }
 
 .badgePillSubtle {
   font-size: 11px;
   font-weight: 500;
-  padding: 2px 7px;
-  border-radius: var(--apple-radius-pill);
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--apple-radius-badge);
   background: var(--apple-bg-secondary);
+  border: 1px solid var(--apple-border-subtle);
   color: var(--apple-text-tertiary);
 }
 
 .navItemActive .badgePillSubtle {
   background: rgba(255, 255, 255, 0.2);
+  border-color: transparent;
   color: #ffffff;
 }
 

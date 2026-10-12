@@ -55,7 +55,7 @@ export function MainSectionRouter() {
               onClick={() => setSection("overview")}
               style={{
                 padding: "8px 18px",
-                borderRadius: "var(--apple-radius-pill)",
+                borderRadius: "var(--apple-radius-sm)",
                 border: "1px solid var(--apple-border-subtle)",
                 background: "var(--apple-bg-elevated)",
                 color: "var(--apple-text-primary)",
@@ -70,7 +70,7 @@ export function MainSectionRouter() {
               onClick={() => setSection("catalog")}
               style={{
                 padding: "8px 18px",
-                borderRadius: "var(--apple-radius-pill)",
+                borderRadius: "var(--apple-radius-sm)",
                 border: "none",
                 background: "var(--apple-accent)",
                 color: "#ffffff",

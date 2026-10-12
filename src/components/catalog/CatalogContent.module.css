@@ -218,7 +218,7 @@
   align-items: center;
   gap: 6px;
   padding: 5px 12px;
-  border-radius: var(--apple-radius-pill);
+  border-radius: var(--apple-radius-sm);
   font-size: 12.5px;
   font-weight: 500;
   background: var(--apple-bg-elevated);
@@ -250,14 +250,14 @@
   display: flex;
   align-items: center;
   background: var(--apple-bg-secondary);
-  border-radius: var(--apple-radius-pill);
+  border-radius: var(--apple-radius-sm);
   padding: 3px;
   gap: 2px;
 }
 
 .segmentBtn {
   padding: 4px 10px;
-  border-radius: var(--apple-radius-pill);
+  border-radius: var(--apple-radius-badge);
   font-size: 12px;
   font-weight: 500;
   border: none;
@@ -439,7 +439,7 @@
 .nicheChip {
   font-size: 11.5px;
   padding: 2px 8px;
-  border-radius: var(--apple-radius-sm);
+  border-radius: var(--apple-radius-badge);
   background: var(--apple-bg-elevated);
   border: 1px solid var(--apple-border-subtle);
   color: var(--apple-text-secondary);
@@ -451,11 +451,12 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 10px;
-  border-radius: var(--apple-radius-pill);
+  padding: 3px 8px;
+  border-radius: var(--apple-radius-badge);
   font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
+  border: 1px solid transparent;
 }
 
 .statusDot {
@@ -496,7 +497,7 @@
   padding: 5px 10px;
   font-size: 12px;
   font-weight: 600;
-  border-radius: var(--apple-radius-pill);
+  border-radius: var(--apple-radius-badge);
   border: none;
   background: var(--apple-accent-subtle);
   color: var(--apple-accent);
@@ -538,7 +539,7 @@
 .resetFiltersBtn {
   margin-top: 8px;
   padding: 8px 18px;
-  border-radius: var(--apple-radius-pill);
+  border-radius: var(--apple-radius-sm);
   border: 1px solid var(--apple-border-subtle);
   background: var(--apple-bg-elevated);
   color: var(--apple-accent);

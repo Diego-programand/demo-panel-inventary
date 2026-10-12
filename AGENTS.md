@@ -44,6 +44,11 @@ Estas habilidades son exclusivas de este proyecto y deben ser consultadas activa
 * **Tipografía:** Jerarquía tipográfica impecable, pesos equilibrados (Regular, Medium, Semibold), espaciado numérico tabular en tablas financieras y de stock (`font-variant-numeric: tabular-nums`).
 * **Iconografía e Interacción:** Iconos precisos estilo SF Symbols, transiciones suaves (200ms–300ms ease-out), microinteracciones hápticas visuales en botones y selectores.
 * **Paneles de Control:** Navegación por barra lateral translúcida (Sidebar), barra superior de herramientas (Toolbar), vistas divididas (Split Views) y tarjetas de métricas tipo iOS/macOS widgets.
+* **Regla Mandatoria de Badges (Zero-Pill Badges / Squircles Continuos):**
+  - Queda **estrictamente prohibido** el uso de badges completamente redondeados en cápsula o píldora (`border-radius: 9999px`, `border-radius: 50%` o estilo ovalado).
+  - Todo badge, tag de atributo, chip de nicho, indicador de estado y contador numérico **DEBE** ser un **cuadrado redondeado (*squircle card badge*)** con `border-radius: var(--apple-radius-badge)` (6px) o `var(--apple-radius-sm)` (8px), emulando la geometría y esquinas continuas de las tarjetas de métricas del resumen general.
+  - Los badges numéricos (Sidebar, alertas, acciones por lote) deben conservar proporciones cuadradas redondeadas (`min-width: 19px–20px`, `height: 19px–20px`), nunca círculos ni píldoras.
+  - Deben contar con bordes delimitadores ultra-sutiles (`1px solid var(--apple-border-subtle)` o bordes semánticos traslúcidos) y fondo con opacidad controlada.
 
 ---
 

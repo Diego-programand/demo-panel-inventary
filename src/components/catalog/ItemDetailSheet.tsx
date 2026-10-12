@@ -106,7 +106,7 @@ export function ItemDetailSheet({ item, onClose, nicheProfile }: ItemDetailSheet
                   fontSize: "11px",
                   fontWeight: 600,
                   padding: "3px 8px",
-                  borderRadius: "var(--apple-radius-pill)",
+                  borderRadius: "var(--apple-radius-badge)",
                   color: statusInfo.color,
                   backgroundColor: statusInfo.bg,
                 }}

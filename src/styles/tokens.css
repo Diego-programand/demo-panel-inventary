@@ -53,6 +53,8 @@
   --apple-blur-thick: blur(40px) saturate(190%);
 
   /* Border Radii (iOS / macOS continuous corner shapes) */
+  --apple-radius-xs: 4px;
+  --apple-radius-badge: 6px;
   --apple-radius-sm: 8px;
   --apple-radius-md: 12px;
   --apple-radius-lg: 16px;
