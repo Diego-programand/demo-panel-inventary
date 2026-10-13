@@ -121,7 +121,7 @@ export function OverviewContent() {
 
         <div className={styles.kpiCard}>
           <div className={styles.kpiHeader}>
-            <span className={styles.kpiLabel}>Valorización de Inventario</span>
+            <span className={styles.kpiLabel}>Valor del Inventario</span>
             <div className={styles.kpiIconWrapper}>
               <AnalyticsIcon size={16} />
             </div>
@@ -130,13 +130,13 @@ export function OverviewContent() {
             $ {metrics.totalValuationRetail.toLocaleString("en-US", { minimumFractionDigits: 0 })}
           </div>
           <div className={styles.kpiTrend}>
-            <span>Costo: ${metrics.totalValuationCost.toLocaleString("en-US", { minimumFractionDigits: 0 })}</span>
+            <span>Costo total: ${metrics.totalValuationCost.toLocaleString("en-US", { minimumFractionDigits: 0 })}</span>
           </div>
         </div>
 
         <div className={styles.kpiCard}>
           <div className={styles.kpiHeader}>
-            <span className={styles.kpiLabel}>Salud de Abastecimiento</span>
+            <span className={styles.kpiLabel}>Disponibilidad de Stock</span>
             <div className={styles.kpiIconWrapper}>
               <WarehouseIcon size={16} />
             </div>
@@ -339,11 +339,11 @@ export function OverviewContent() {
           </div>
         </div>
 
-        {/* Kardex Activity Feed */}
+        {/* Recent Activity Feed */}
         <div className={styles.tableCard}>
           <div className={styles.sectionHeaderRow} style={{ marginBottom: 0 }}>
             <div>
-              <h3 className={styles.sectionTitle}>Auditoría de Kardex</h3>
+              <h3 className={styles.sectionTitle}>Actividad Reciente</h3>
               <p className={styles.sectionSubtitle}>Últimos movimientos registrados</p>
             </div>
           </div>

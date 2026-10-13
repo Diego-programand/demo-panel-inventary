@@ -147,9 +147,9 @@ export function CatalogContent() {
 
   // Status Badge Map
   const statusConfig: Record<StockStatus, { label: string; color: string; bg: string }> = {
-    optimal: { label: "Óptimo", color: "var(--apple-success)", bg: "var(--apple-success-subtle)" },
-    low_stock: { label: "Stock Bajo", color: "var(--apple-warning)", bg: "var(--apple-warning-subtle)" },
-    critical: { label: "Crítico", color: "var(--apple-danger)", bg: "var(--apple-danger-subtle)" },
+    optimal: { label: "En Stock", color: "var(--apple-success)", bg: "var(--apple-success-subtle)" },
+    low_stock: { label: "Poco Stock", color: "var(--apple-warning)", bg: "var(--apple-warning-subtle)" },
+    critical: { label: "Agotado", color: "var(--apple-danger)", bg: "var(--apple-danger-subtle)" },
     overstock: { label: "Excedente", color: "var(--apple-indigo)", bg: "rgba(88, 86, 214, 0.14)" },
     discontinued: { label: "Descontinuado", color: "var(--apple-text-tertiary)", bg: "var(--apple-bg-secondary)" },
   };
@@ -172,18 +172,18 @@ export function CatalogContent() {
             />
             <span>Sector: {nicheProfile.name}</span>
             <span>/</span>
-            <span>Catálogo Activo</span>
+            <span>Catálogo</span>
           </div>
           <h1 className={styles.title}>Catálogo de {nicheProfile.vocabulary.itemPlural}</h1>
           <p className={styles.subtitle}>
-            Control centralizado de existencias, atributos de nicho y parámetros de reposición.
+            Consulta y administra el stock de tus productos en cada una de tus tiendas.
           </p>
         </div>
 
         {/* Quick KPI stats */}
         <div className={styles.headerStats}>
           <div className={styles.statChip}>
-            <span className={styles.statLabel}>Total SKUs</span>
+            <span className={styles.statLabel}>Productos</span>
             <span className={`tabular-nums ${styles.statValue}`}>{stats.totalSKUs}</span>
           </div>
           <div className={styles.statChip}>
@@ -193,13 +193,13 @@ export function CatalogContent() {
             </span>
           </div>
           <div className={styles.statChip}>
-            <span className={styles.statLabel}>Valorización</span>
+            <span className={styles.statLabel}>Valor Total</span>
             <span className={`tabular-nums ${styles.statValue}`}>
               ${stats.totalValuation.toLocaleString("es-CO")}
             </span>
           </div>
           <div className={styles.statChip}>
-            <span className={styles.statLabel}>En Alerta</span>
+            <span className={styles.statLabel}>Poco Stock</span>
             <span
               className={`tabular-nums ${styles.statValue}`}
               style={{ color: stats.criticalCount > 0 ? "var(--apple-danger)" : "var(--apple-text-primary)" }}
@@ -303,19 +303,19 @@ export function CatalogContent() {
               className={`${styles.segmentBtn} ${selectedStatus === "optimal" ? styles.segmentBtnActive : ""}`}
               onClick={() => setSelectedStatus("optimal")}
             >
-              Óptimo
+              En Stock
             </button>
             <button
               className={`${styles.segmentBtn} ${selectedStatus === "low_stock" ? styles.segmentBtnActive : ""}`}
               onClick={() => setSelectedStatus("low_stock")}
             >
-              Stock Bajo
+              Poco Stock
             </button>
             <button
               className={`${styles.segmentBtn} ${selectedStatus === "critical" ? styles.segmentBtnActive : ""}`}
               onClick={() => setSelectedStatus("critical")}
             >
-              Crítico
+              Agotado
             </button>
             <button
               className={`${styles.segmentBtn} ${selectedStatus === "overstock" ? styles.segmentBtnActive : ""}`}

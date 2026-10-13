@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styles from "./CriticalAlertsWidget.module.css";
 import { useDashboard } from "@/core/context/DashboardContext";
 import { useInventoryStore } from "@/core/store/inventory-store";
@@ -16,16 +16,15 @@ export function CriticalAlertsWidget() {
     (i) => i.status === "critical" || i.status === "low_stock"
   );
 
-  const handleQuickReorder = (itemId: string, itemName: string, suggestedQty: number) => {
-    const docSuffix = itemId.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+  const handleQuickReorder = useCallback((itemId: string, itemName: string, suggestedQty: number) => {
     const res = recordMovement({
       itemId,
       type: "purchase_reception",
       quantity: suggestedQty,
       targetLocationId: warehouseId !== "all" ? warehouseId : "wh-main",
-      referenceDocument: `ORD-EXP-${docSuffix}`,
-      performedBy: "Módulo Automático de Reorden",
-      notes: `Reabastecimiento de emergencia activado para ${itemName}.`,
+      referenceDocument: `Entrada #${Math.floor(100 + Math.random() * 900)}`,
+      performedBy: "Administrador",
+      notes: `Reabastecimiento directo para ${itemName}.`,
     });
 
     if (res.success) {
@@ -34,14 +33,14 @@ export function CriticalAlertsWidget() {
         setSuccessItemIds((prev) => ({ ...prev, [itemId]: false }));
       }, 2500);
     }
-  };
+  }, [recordMovement, warehouseId]);
 
   return (
     <div className={styles.alertsCard}>
       <div className={styles.headerRow}>
         <div className={styles.titleArea}>
           <AlertIcon size={18} color="var(--apple-danger)" />
-          <h3 className={styles.title}>Atención de Reabastecimiento</h3>
+          <h3 className={styles.title}>Productos por Agotarse</h3>
           {alertItems.length > 0 && (
             <span className={styles.alertCountBadge}>{alertItems.length}</span>
           )}
@@ -50,7 +49,7 @@ export function CriticalAlertsWidget() {
 
       {alertItems.length === 0 ? (
         <div className={styles.emptyState}>
-          ✓ Todos los artículos de este sector se encuentran en niveles de stock óptimos.
+          ✓ Todo el inventario se encuentra en niveles saludables.
         </div>
       ) : (
         <div className={styles.alertsList}>

@@ -15,10 +15,10 @@ export function WarehouseCapacityWidget() {
       <div className={styles.headerRow}>
         <div className={styles.titleArea}>
           <h3 className={styles.title}>
-            Ocupación y Capacidad de {nicheProfile.vocabulary.locationLabel}
+            Capacidad de {nicheProfile.vocabulary.locationLabel}
           </h3>
           <p className={styles.subtitle}>
-            Monitoreo de densidad de almacenamiento por centro logístico
+            Nivel de ocupación estimado en cada una de tus sedes
           </p>
         </div>
       </div>

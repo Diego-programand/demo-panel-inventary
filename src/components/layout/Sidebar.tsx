@@ -69,7 +69,7 @@ export function Sidebar() {
     },
     {
       id: "movements",
-      label: "Movimientos & Kardex",
+      label: "Movimientos",
       icon: <MovementsIcon size={18} />,
     },
     {
@@ -81,14 +81,14 @@ export function Sidebar() {
     },
     {
       id: "alerts",
-      label: "Alertas Críticas",
+      label: "Poco Stock",
       icon: <AlertIcon size={18} />,
       badge: criticalCount > 0 ? criticalCount : undefined,
       badgeType: "danger",
     },
     {
       id: "analytics",
-      label: "Analítica & Rotación",
+      label: "Reportes & Métricas",
       icon: <AnalyticsIcon size={18} />,
     },
   ];

@@ -18,7 +18,7 @@
 }
 
 .modalCard {
-  width: 540px;
+  width: 500px;
   max-width: 100%;
   max-height: 90vh;
   background: var(--apple-bg-elevated);
@@ -35,7 +35,7 @@
 
 @keyframes scaleUp {
   from {
-    transform: scale(0.95) translateY(12px);
+    transform: scale(0.96) translateY(10px);
     opacity: 0;
   }
   to {
@@ -56,7 +56,7 @@
 .modalTitleGroup {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .modalTitle {
@@ -68,14 +68,14 @@
 }
 
 .modalSubtitle {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--apple-text-secondary);
   margin: 0;
 }
 
 .closeBtn {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--apple-radius-sm);
   border: 1px solid var(--apple-border-subtle);
   background: var(--apple-bg-surface);
@@ -92,23 +92,23 @@
   color: var(--apple-text-primary);
 }
 
-/* Operation Type Tabs */
+/* Segmented Action Tabs (Apple Squircle Tabs) */
 .tabsContainer {
-  padding: 12px 24px;
+  padding: 10px 24px;
   background: var(--apple-bg-secondary);
   border-bottom: 1px solid var(--apple-border-subtle);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 6px;
 }
 
 .tabBtn {
-  padding: 7px 10px;
-  border-radius: var(--apple-radius-sm);
-  border: none;
+  padding: 9px 10px;
+  border-radius: var(--apple-radius-badge);
+  border: 1px solid transparent;
   background: transparent;
   color: var(--apple-text-secondary);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -127,6 +127,7 @@
   background: var(--apple-bg-surface-solid);
   color: var(--apple-text-primary);
   font-weight: 600;
+  border-color: var(--apple-border-subtle);
   box-shadow: var(--apple-shadow-xs);
 }
 
@@ -147,23 +148,29 @@
 }
 
 .fieldLabel {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--apple-text-secondary);
+  color: var(--apple-text-primary);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+.twoColumnGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
 .selectInput,
 .textInput,
 .textareaInput {
-  padding: 9px 12px;
+  padding: 10px 14px;
   border-radius: var(--apple-radius-md);
-  border: 1px solid var(--apple-border-subtle);
-  background: var(--apple-bg-surface);
+  border: 1px solid var(--apple-border-medium);
+  background: var(--apple-bg-surface-solid);
   color: var(--apple-text-primary);
-  font-size: 13.5px;
+  font-size: 14px;
   outline: none;
   transition: all var(--apple-transition-fast);
   width: 100%;
@@ -174,11 +181,10 @@
 .textareaInput:focus {
   border-color: var(--apple-accent);
   box-shadow: 0 0 0 3px var(--apple-accent-subtle);
-  background: var(--apple-bg-surface-solid);
 }
 
 .textareaInput {
-  min-height: 64px;
+  min-height: 60px;
   resize: vertical;
 }
 
@@ -190,13 +196,13 @@
 }
 
 .stepperBtn {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--apple-radius-md);
-  border: 1px solid var(--apple-border-subtle);
-  background: var(--apple-bg-surface);
+  border: 1px solid var(--apple-border-medium);
+  background: var(--apple-bg-surface-solid);
   color: var(--apple-text-primary);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -217,12 +223,13 @@
 .quantityInput {
   flex: 1;
   text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  padding: 10px;
   border-radius: var(--apple-radius-md);
-  border: 1px solid var(--apple-border-subtle);
-  background: var(--apple-bg-surface);
+  border: 1px solid var(--apple-border-medium);
+  background: var(--apple-bg-surface-solid);
   color: var(--apple-text-primary);
   outline: none;
 }
@@ -231,30 +238,33 @@
   border-color: var(--apple-accent);
 }
 
+/* Squircle badge for measure unit */
 .unitBadge {
   font-size: 11.5px;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--apple-text-secondary);
-  padding: 2px 7px;
+  padding: 3px 8px;
   background: var(--apple-bg-secondary);
   border: 1px solid var(--apple-border-subtle);
   border-radius: var(--apple-radius-badge);
 }
 
-/* Balance Preview Card */
+/* Clean Balance Preview Card */
 .balancePreviewCard {
   background: var(--apple-bg-surface);
   border: 1px solid var(--apple-border-subtle);
   border-radius: var(--apple-radius-md);
-  padding: 12px 14px;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .balanceLabel {
-  font-size: 12px;
-  color: var(--apple-text-tertiary);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--apple-text-secondary);
 }
 
 .balanceTransitions {
@@ -262,28 +272,62 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  font-weight: 600;
 }
 
 .balanceArrow {
   color: var(--apple-text-tertiary);
+  font-size: 14px;
+}
+
+/* Progressive Disclosure (Advanced Options) */
+.advancedToggleSection {
+  border-top: 1px dashed var(--apple-border-subtle);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.advancedToggleBtn {
+  background: none;
+  border: none;
+  color: var(--apple-accent);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 0;
+  text-align: left;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity var(--apple-transition-fast);
+}
+
+.advancedToggleBtn:hover {
+  text-decoration: underline;
+}
+
+.advancedFieldsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+  animation: fadeIn 180ms ease-out forwards;
 }
 
 /* Error Banner */
 .errorBanner {
   background: var(--apple-danger-subtle);
-  border: 1px solid var(--apple-danger);
-  color: var(--apple-danger);
+  border: 1px solid rgba(255, 59, 48, 0.3);
   border-radius: var(--apple-radius-md);
-  padding: 8px 12px;
-  font-size: 12px;
-  font-weight: 500;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--apple-danger);
 }
 
-/* Footer Actions */
+/* Modal Footer */
 .modalFooter {
   padding: 16px 24px;
   border-top: 1px solid var(--apple-border-subtle);
@@ -291,40 +335,41 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 12px;
 }
 
 .cancelBtn {
-  padding: 9px 16px;
-  font-size: 13px;
+  padding: 9px 18px;
+  border-radius: var(--apple-radius-md);
+  border: 1px solid var(--apple-border-medium);
+  background: var(--apple-bg-surface-solid);
+  color: var(--apple-text-primary);
+  font-size: 13.5px;
   font-weight: 500;
-  border-radius: var(--apple-radius-sm);
-  border: 1px solid var(--apple-border-subtle);
-  background: var(--apple-bg-surface);
-  color: var(--apple-text-secondary);
   cursor: pointer;
+  min-height: 40px;
   transition: all var(--apple-transition-fast);
 }
 
 .cancelBtn:hover {
   background: var(--apple-bg-secondary);
-  color: var(--apple-text-primary);
 }
 
 .submitBtn {
-  padding: 9px 20px;
-  font-size: 13.5px;
-  font-weight: 600;
-  border-radius: var(--apple-radius-sm);
+  padding: 9px 22px;
+  border-radius: var(--apple-radius-md);
   border: none;
   background: var(--apple-accent);
   color: #ffffff;
-  cursor: pointer;
-  transition: all var(--apple-transition-fast);
+  font-size: 13.5px;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 6px;
-  box-shadow: 0 2px 6px rgba(0, 113, 227, 0.28);
+  gap: 8px;
+  cursor: pointer;
+  min-height: 40px;
+  transition: all var(--apple-transition-fast);
+  box-shadow: 0 1px 3px rgba(0, 113, 227, 0.3);
 }
 
 .submitBtn:hover:not(:disabled) {
@@ -333,49 +378,50 @@
 }
 
 .submitBtn:disabled {
-  opacity: 0.5;
+  opacity: 0.45;
   cursor: not-allowed;
   transform: none;
 }
 
-/* Success Overlay State */
+/* Success State */
 .successOverlay {
-  padding: 48px 24px;
+  padding: 50px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 16px;
   animation: fadeIn 200ms ease-out forwards;
 }
 
 .successIconCircle {
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
   border-radius: var(--apple-radius-lg);
   background: var(--apple-success-subtle);
   color: var(--apple-success);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(52, 199, 89, 0.24);
+  margin-bottom: 16px;
+  border: 1px solid rgba(52, 199, 89, 0.3);
 }
 
 .successTitle {
   font-size: 20px;
   font-weight: 600;
   color: var(--apple-text-primary);
-  margin: 0;
+  margin: 0 0 6px 0;
 }
 
 .successDesc {
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--apple-text-secondary);
-  margin: 0;
   max-width: 320px;
+  margin: 0;
 }
 
+/* Mobile Responsive Adaptations */
 @media (max-width: 640px) {
   .modalOverlay {
     padding: 12px;
@@ -384,24 +430,30 @@
 
   .modalCard {
     width: 100%;
-    max-height: 94vh;
-    border-radius: var(--apple-radius-lg);
+    max-height: 85vh;
+    border-radius: var(--apple-radius-xl) var(--apple-radius-xl) 0 0;
   }
 
-  .modalHeader {
-    padding: 16px 18px 12px 18px;
+  .tabsContainer {
+    padding: 8px 16px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .tabBtn {
+    font-size: 12px;
+    padding: 8px 4px;
   }
 
   .formBody {
-    padding: 16px 18px;
+    padding: 16px;
     gap: 14px;
   }
 
-  .modalFooter {
-    padding: 12px 18px max(14px, env(safe-area-inset-bottom, 14px)) 18px;
+  .twoColumnGrid {
+    grid-template-columns: 1fr;
   }
 
-  .submitBtn {
-    padding: 11px 18px;
+  .modalFooter {
+    padding: 14px 16px;
   }
 }

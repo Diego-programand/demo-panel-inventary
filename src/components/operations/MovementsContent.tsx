@@ -166,11 +166,11 @@ export function MovementsContent() {
             />
             <span>Sector: {nicheProfile.name}</span>
             <span>/</span>
-            <span>Kardex Central</span>
+            <span>Historial</span>
           </div>
-          <h1 className={styles.title}>Libro Mayor de Movimientos & Kardex</h1>
+          <h1 className={styles.title}>Historial de Movimientos</h1>
           <p className={styles.subtitle}>
-            Auditoría inmutable de todas las recepciones, salidas, transferencias y ajustes de inventario.
+            Registro en tiempo real de entradas, ventas y traslados entre sedes.
           </p>
         </div>
 
@@ -178,10 +178,10 @@ export function MovementsContent() {
           <button
             className={styles.exportBtn}
             onClick={handleExportKardexCSV}
-            title="Exportar libro Kardex a formato CSV"
+            title="Exportar historial a formato CSV"
           >
             <ExportIcon size={14} />
-            <span>Exportar Libro Kardex</span>
+            <span>Exportar a Excel (CSV)</span>
           </button>
 
           <button
@@ -232,7 +232,7 @@ export function MovementsContent() {
             <input
               type="text"
               className={styles.searchInput}
-              placeholder="Buscar por SKU, documento, artículo, operador..."
+              placeholder="Buscar por artículo, código, documento..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -262,7 +262,7 @@ export function MovementsContent() {
             value={selectedWarehouse}
             onChange={(e) => setSelectedWarehouse(e.target.value)}
           >
-            <option value="all">Todos los Almacenes</option>
+            <option value="all">Todas las Sedes</option>
             {warehouses.filter((w) => w.id !== "all").map((w) => (
               <option key={w.id} value={w.id}>
                 {w.name} ({w.code})
@@ -284,7 +284,7 @@ export function MovementsContent() {
             className={`${styles.pillBtn} ${selectedCategory === "purchases" ? styles.pillBtnActive : ""}`}
             onClick={() => setSelectedCategory("purchases")}
           >
-            <span>Entradas / Compras</span>
+            <span>Entradas</span>
           </button>
           <button
             className={`${styles.pillBtn} ${selectedCategory === "sales" ? styles.pillBtnActive : ""}`}
@@ -296,13 +296,13 @@ export function MovementsContent() {
             className={`${styles.pillBtn} ${selectedCategory === "transfers" ? styles.pillBtnActive : ""}`}
             onClick={() => setSelectedCategory("transfers")}
           >
-            <span>Traslados Inter-Almacén</span>
+            <span>Traslados</span>
           </button>
           <button
             className={`${styles.pillBtn} ${selectedCategory === "adjustments" ? styles.pillBtnActive : ""}`}
             onClick={() => setSelectedCategory("adjustments")}
           >
-            <span>Ajustes & Mermas</span>
+            <span>Ajustes</span>
           </button>
         </div>
       </div>

@@ -55,10 +55,10 @@ export function CommandPalette() {
     () => [
       { id: "overview", label: "Ir a Resumen General", icon: <OverviewIcon size={16} /> },
       { id: "catalog", label: `Ir a Catálogo de ${nicheProfile.vocabulary.itemPlural}`, icon: <CatalogIcon size={16} /> },
-      { id: "movements", label: "Ir a Movimientos & Kardex", icon: <MovementsIcon size={16} /> },
+      { id: "movements", label: "Ir a Movimientos", icon: <MovementsIcon size={16} /> },
       { id: "warehouses", label: `Ir a ${nicheProfile.vocabulary.locationLabel}`, icon: <WarehouseIcon size={16} /> },
-      { id: "alerts", label: "Ver Alertas Críticas de Stock", icon: <AlertIcon size={16} /> },
-      { id: "analytics", label: "Ir a Analítica & Rotación", icon: <AnalyticsIcon size={16} /> },
+      { id: "alerts", label: "Ver Alertas de Poco Stock", icon: <AlertIcon size={16} /> },
+      { id: "analytics", label: "Ir a Reportes & Métricas", icon: <AnalyticsIcon size={16} /> },
     ],
     [nicheProfile]
   );

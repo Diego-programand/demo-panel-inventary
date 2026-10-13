@@ -94,9 +94,9 @@ export function TurnoverChart() {
     <div className={styles.chartCard}>
       <div className={styles.headerRow}>
         <div className={styles.titleArea}>
-          <h3 className={styles.title}>Dinámica de Flujo & Rotación</h3>
+          <h3 className={styles.title}>Entradas vs Salidas</h3>
           <p className={styles.subtitle}>
-            Entradas vs salidas mensuales de {nicheProfile.vocabulary.itemPlural.toLowerCase()}
+            Comparativa mensual de compras y ventas de {nicheProfile.vocabulary.itemPlural.toLowerCase()}
           </p>
         </div>
 

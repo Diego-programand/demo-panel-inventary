@@ -16,10 +16,10 @@ export type DashboardSection =
 export type ThemeMode = "dark" | "light";
 
 export const SAMPLE_WAREHOUSES: LocationWarehouse[] = [
-  { id: "all", name: "Todos los Almacenes", code: "ALL", city: "Global", capacityUtilization: 78, zones: [] },
-  { id: "wh-main", name: "Almacén Central / Hub", code: "HUB-01", city: "Medellín", capacityUtilization: 86, zones: ["Zona A - Racks", "Zona B - Frío", "Muelle de Despacho"] },
-  { id: "wh-north", name: "Centro Logístico Norte", code: "CLN-02", city: "Bogotá", capacityUtilization: 64, zones: ["Recepción", "Cross-docking", "Bodega Alta"] },
-  { id: "wh-west", name: "Depósito Regional Occidente", code: "DRO-03", city: "Cali", capacityUtilization: 42, zones: ["Zona Principal", "Reserva"] },
+  { id: "all", name: "Todas las Sedes", code: "TODAS", city: "General", capacityUtilization: 78, zones: [] },
+  { id: "wh-main", name: "Bodega Principal", code: "BOD-01", city: "Medellín", capacityUtilization: 86, zones: ["Mostrador", "Estantería Principal", "Bodega de Reserva"] },
+  { id: "wh-north", name: "Tienda Centro", code: "TIENDA-01", city: "Bogotá", capacityUtilization: 64, zones: ["Área de Ventas", "Vitrina", "Depósito Interno"] },
+  { id: "wh-west", name: "Sucursal Norte", code: "TIENDA-02", city: "Cali", capacityUtilization: 42, zones: ["Recepción", "Estantes"] },
 ];
 
 interface DashboardContextValue {

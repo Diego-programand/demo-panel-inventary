@@ -37,7 +37,7 @@ export function MainSectionRouter() {
           <div
             style={{
               padding: "16px",
-              borderRadius: "50%",
+              borderRadius: "var(--apple-radius-lg)",
               background: "var(--apple-bg-surface)",
               border: "1px solid var(--apple-border-subtle)",
             }}
@@ -45,10 +45,10 @@ export function MainSectionRouter() {
             <span style={{ fontSize: "28px" }}>⚙️</span>
           </div>
           <h2 style={{ fontSize: "22px", fontWeight: 600, color: "var(--apple-text-primary)", margin: 0 }}>
-            Sección en Preparación
+            Módulo en Preparación
           </h2>
           <p style={{ fontSize: "14px", color: "var(--apple-text-secondary)", maxWidth: "420px", margin: 0 }}>
-            El módulo de {section.toUpperCase()} para {nicheProfile.name} se incorporará en las siguientes fases del plan de ejecución.
+            Este módulo estará disponible próximamente para {nicheProfile.name}.
           </p>
           <div style={{ display: "flex", gap: "10px", marginTop: "12px" }}>
             <button

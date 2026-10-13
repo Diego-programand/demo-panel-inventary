@@ -13,10 +13,10 @@ interface MovementModalProps {
   preselectedItemId?: string;
 }
 
-type OperationTab = "purchase_reception" | "sales_dispatch" | "transfer" | "audit_adjustment";
+type SimpleOperationType = "purchase_reception" | "sales_dispatch" | "transfer";
 
 export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementModalProps) {
-  const { nicheId, nicheProfile, warehouses } = useDashboard();
+  const { nicheId, warehouses } = useDashboard();
   const { getItemsByNiche, recordMovement } = useInventoryStore();
 
   const realWarehouses = useMemo(
@@ -29,33 +29,32 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
     [getItemsByNiche, nicheId]
   );
 
-  const [operationType, setOperationType] = useState<OperationTab>("purchase_reception");
+  const [operationType, setOperationType] = useState<SimpleOperationType>("purchase_reception");
   const [userSelectedItemId, setUserSelectedItemId] = useState<string>("");
   const selectedItemId = userSelectedItemId || preselectedItemId || availableItems[0]?.id || "";
   const [sourceLocationId, setSourceLocationId] = useState<string>("wh-main");
   const [targetLocationId, setTargetLocationId] = useState<string>("wh-north");
   const [quantity, setQuantity] = useState<number>(1);
-  const [referenceDocument, setReferenceDocument] = useState<string>("FAC-PROV-9011");
-  const [performedBy, setPerformedBy] = useState<string>("Operador de Turno");
+  const [referenceDocument, setReferenceDocument] = useState<string>("Entrada #104");
+  const [performedBy, setPerformedBy] = useState<string>("Administrador");
   const [notes, setNotes] = useState<string>("");
-  const [adjustmentSign, setAdjustmentSign] = useState<"+" | "-">("+");
+  const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const handleTabChange = useCallback((type: OperationTab) => {
+  const handleTabChange = useCallback((type: SimpleOperationType) => {
     setOperationType(type);
-    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    const randomNum = Math.floor(100 + Math.random() * 900);
     if (type === "purchase_reception") {
-      setReferenceDocument(`FAC-PROV-${randomNum}`);
+      setReferenceDocument(`Entrada #${randomNum}`);
     } else if (type === "sales_dispatch") {
-      setReferenceDocument(`GUIA-VENTA-${randomNum}`);
-    } else if (type === "transfer") {
-      setReferenceDocument(`TRAS-INT-${randomNum}`);
+      setReferenceDocument(`Venta #${randomNum}`);
     } else {
-      setReferenceDocument(`AUD-CONTEO-${randomNum}`);
+      setReferenceDocument(`Traslado #${randomNum}`);
     }
     setErrorMessage("");
   }, []);
+
 
   // Close on Escape key
   useEffect(() => {
@@ -98,7 +97,7 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
       const before = sourceStock;
       const after = before - quantity;
       const valid = quantity > 0 && quantity <= before;
-      const error = quantity > before ? `Stock insuficiente en origen (disponible: ${before} ${currentItem.unitOfMeasure})` : "";
+      const error = quantity > before ? `Stock insuficiente (disponible: ${before} ${currentItem.unitOfMeasure})` : "";
       return { before, after, valid, error };
     }
 
@@ -106,8 +105,8 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
       const isSameWarehouse = sourceLocationId === targetLocationId;
       const hasEnoughStock = quantity > 0 && quantity <= sourceStock;
       let error = "";
-      if (isSameWarehouse) error = "El almacén de destino debe ser diferente al de origen";
-      else if (!hasEnoughStock) error = `Stock insuficiente en origen para transferir (disponible: ${sourceStock} ${currentItem.unitOfMeasure})`;
+      if (isSameWarehouse) error = "La sede de destino debe ser diferente a la de origen";
+      else if (!hasEnoughStock) error = `Stock insuficiente en origen (disponible: ${sourceStock} ${currentItem.unitOfMeasure})`;
 
       return {
         before: sourceStock,
@@ -117,108 +116,72 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
       };
     }
 
-    // audit_adjustment
-    const before = targetStock;
-    const after = adjustmentSign === "+" ? before + quantity : Math.max(0, before - quantity);
-    return { before, after, valid: quantity > 0, error: "" };
-  }, [currentItem, operationType, quantity, sourceStock, targetStock, sourceLocationId, targetLocationId, adjustmentSign]);
+    return { before: 0, after: 0, valid: true, error: "" };
+  }, [currentItem, operationType, quantity, sourceLocationId, sourceStock, targetLocationId, targetStock]);
 
-  // Submit Handler
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
-      if (!currentItem || !projectedInfo.valid) return;
+      setErrorMessage("");
+
+      if (!currentItem) {
+        setErrorMessage("Por favor selecciona un artículo.");
+        return;
+      }
+
+      if (quantity <= 0) {
+        setErrorMessage("La cantidad debe ser mayor a 0.");
+        return;
+      }
+
+      let type: MovementType = "purchase_reception";
+      let srcLoc: string | undefined = undefined;
+      let tgtLoc: string | undefined = undefined;
 
       if (operationType === "purchase_reception") {
-        const res = recordMovement({
-          itemId: currentItem.id,
-          type: "purchase_reception",
-          quantity,
-          targetLocationId,
-          referenceDocument,
-          performedBy,
-          notes,
-        });
-        if (!res.success) {
-          setErrorMessage(res.error || "Error al procesar movimiento");
-          return;
-        }
+        type = "purchase_reception";
+        tgtLoc = targetLocationId;
       } else if (operationType === "sales_dispatch") {
-        const res = recordMovement({
-          itemId: currentItem.id,
-          type: "sales_dispatch",
-          quantity,
-          sourceLocationId,
-          referenceDocument,
-          performedBy,
-          notes,
-        });
-        if (!res.success) {
-          setErrorMessage(res.error || "Error al procesar movimiento");
-          return;
-        }
+        type = "sales_dispatch";
+        srcLoc = sourceLocationId;
       } else if (operationType === "transfer") {
-        // Atomic transfer: transfer_out from source, transfer_in to target
-        const resOut = recordMovement({
-          itemId: currentItem.id,
-          type: "transfer_out",
-          quantity,
-          sourceLocationId,
-          targetLocationId,
-          referenceDocument: `${referenceDocument}-OUT`,
-          performedBy,
-          notes: `Traslado hacia ${targetLocationId}: ${notes}`,
-        });
-        if (!resOut.success) {
-          setErrorMessage(resOut.error || "Error en traslado de salida");
-          return;
-        }
+        type = "transfer_out";
+        srcLoc = sourceLocationId;
+        tgtLoc = targetLocationId;
+      }
 
-        recordMovement({
-          itemId: currentItem.id,
-          type: "transfer_in",
-          quantity,
-          sourceLocationId,
-          targetLocationId,
-          referenceDocument: `${referenceDocument}-IN`,
-          performedBy,
-          notes: `Traslado recibido desde ${sourceLocationId}: ${notes}`,
-        });
-      } else if (operationType === "audit_adjustment") {
-        const movementType: MovementType = adjustmentSign === "+" ? "audit_adjustment" : "adjustment_loss";
-        const res = recordMovement({
-          itemId: currentItem.id,
-          type: movementType,
-          quantity,
-          targetLocationId,
-          referenceDocument,
-          performedBy,
-          notes: `Ajuste (${adjustmentSign}): ${notes}`,
-        });
-        if (!res.success) {
-          setErrorMessage(res.error || "Error en ajuste");
-          return;
-        }
+      const result = recordMovement({
+        itemId: currentItem.id,
+        type,
+        quantity,
+        sourceLocationId: srcLoc,
+        targetLocationId: tgtLoc,
+        referenceDocument: referenceDocument.trim() || `${operationType === "purchase_reception" ? "Entrada" : operationType === "sales_dispatch" ? "Venta" : "Traslado"} #${Math.floor(100 + Math.random() * 900)}`,
+        performedBy: performedBy.trim() || "Administrador",
+        notes: notes.trim() || undefined,
+      });
+
+      if (!result.success) {
+        setErrorMessage(result.error || "Ocurrió un error al registrar el movimiento.");
+        return;
       }
 
       setIsSuccess(true);
       setTimeout(() => {
         setIsSuccess(false);
         onClose();
-      }, 1200);
+      }, 1500);
     },
     [
       currentItem,
-      projectedInfo.valid,
-      operationType,
       quantity,
+      operationType,
       targetLocationId,
       sourceLocationId,
+      recordMovement,
       referenceDocument,
       performedBy,
       notes,
-      adjustmentSign,
-      recordMovement,
       onClose,
     ]
   );
@@ -231,8 +194,8 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
         {/* Header */}
         <header className={styles.modalHeader}>
           <div className={styles.modalTitleGroup}>
-            <h2 className={styles.modalTitle}>Registrar Movimiento de Inventario</h2>
-            <p className={styles.modalSubtitle}>Sector: {nicheProfile.name} • Kardex Central</p>
+            <h2 className={styles.modalTitle}>Registrar Movimiento</h2>
+            <p className={styles.modalSubtitle}>Actualiza las existencias de tu inventario al instante</p>
           </div>
           <button className={styles.closeBtn} onClick={onClose} aria-label="Cerrar ventana">
             <CloseIcon size={14} />
@@ -246,52 +209,45 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
             </div>
             <h3 className={styles.successTitle}>¡Movimiento Registrado!</h3>
             <p className={styles.successDesc}>
-              El saldo del artículo y el libro mayor del Kardex han sido actualizados en tiempo real.
+              El inventario se ha actualizado en tiempo real.
             </p>
           </div>
         ) : (
           <>
-            {/* Operation Type Tabs */}
+            {/* 1. Essential Segmented Action Selector */}
             <div className={styles.tabsContainer}>
               <button
                 type="button"
                 className={`${styles.tabBtn} ${operationType === "purchase_reception" ? styles.tabBtnActive : ""}`}
                 onClick={() => handleTabChange("purchase_reception")}
               >
-                <span>Entrada / Compra</span>
+                <span>+ Entrada de Stock</span>
               </button>
               <button
                 type="button"
                 className={`${styles.tabBtn} ${operationType === "sales_dispatch" ? styles.tabBtnActive : ""}`}
                 onClick={() => handleTabChange("sales_dispatch")}
               >
-                <span>Salida / Venta</span>
+                <span>- Salida / Venta</span>
               </button>
               <button
                 type="button"
                 className={`${styles.tabBtn} ${operationType === "transfer" ? styles.tabBtnActive : ""}`}
                 onClick={() => handleTabChange("transfer")}
               >
-                <span>Traslado</span>
-              </button>
-              <button
-                type="button"
-                className={`${styles.tabBtn} ${operationType === "audit_adjustment" ? styles.tabBtnActive : ""}`}
-                onClick={() => handleTabChange("audit_adjustment")}
-              >
-                <span>Ajuste Físico</span>
+                <span>⇄ Traslado</span>
               </button>
             </div>
 
-            {/* Form */}
+            {/* 2. Form Body */}
             <form onSubmit={handleSubmit} className={styles.formBody}>
-              {/* Item Selector */}
+              {/* Product Selector */}
               <div className={styles.formField}>
                 <label className={styles.fieldLabel}>
-                  <span>{nicheProfile.vocabulary.itemSingular} a Operar</span>
+                  <span>Producto</span>
                   {currentItem && (
-                    <span className="tabular-nums" style={{ color: "var(--apple-text-tertiary)" }}>
-                      Global: {currentItem.totalStock} {currentItem.unitOfMeasure}
+                    <span className="tabular-nums" style={{ color: "var(--apple-text-secondary)", fontWeight: 500 }}>
+                      Total disponible: {currentItem.totalStock} {currentItem.unitOfMeasure}
                     </span>
                   )}
                 </label>
@@ -303,19 +259,19 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
                 >
                   {availableItems.map((item) => (
                     <option key={item.id} value={item.id}>
-                      [{item.sku}] {item.name} — {item.category}
+                      {item.name} ({item.sku}) — {item.totalStock} {item.unitOfMeasure}
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Warehouses Selection */}
+              {/* Location Selectors */}
               {operationType === "transfer" ? (
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+                <div className={styles.twoColumnGrid}>
                   <div className={styles.formField}>
                     <label className={styles.fieldLabel}>
-                      <span>Almacén Origen</span>
-                      <span className="tabular-nums" style={{ color: "var(--apple-text-tertiary)" }}>
+                      <span>Desde (Origen)</span>
+                      <span className="tabular-nums" style={{ color: "var(--apple-text-secondary)" }}>
                         {sourceStock} {currentItem?.unitOfMeasure}
                       </span>
                     </label>
@@ -334,8 +290,8 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
 
                   <div className={styles.formField}>
                     <label className={styles.fieldLabel}>
-                      <span>Almacén Destino</span>
-                      <span className="tabular-nums" style={{ color: "var(--apple-text-tertiary)" }}>
+                      <span>Hacia (Destino)</span>
+                      <span className="tabular-nums" style={{ color: "var(--apple-text-secondary)" }}>
                         {targetStock} {currentItem?.unitOfMeasure}
                       </span>
                     </label>
@@ -355,8 +311,8 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
               ) : operationType === "sales_dispatch" ? (
                 <div className={styles.formField}>
                   <label className={styles.fieldLabel}>
-                    <span>Almacén de Despacho (Origen)</span>
-                    <span className="tabular-nums" style={{ color: "var(--apple-text-tertiary)" }}>
+                    <span>Sede de Despacho (Salida)</span>
+                    <span className="tabular-nums" style={{ color: "var(--apple-text-secondary)" }}>
                       Disponible: {sourceStock} {currentItem?.unitOfMeasure}
                     </span>
                   </label>
@@ -367,7 +323,7 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
                   >
                     {realWarehouses.map((wh) => (
                       <option key={wh.id} value={wh.id}>
-                        {wh.name} ({wh.code})
+                        {wh.name} ({wh.code}) — {currentItem?.stockByLocation[wh.id] || 0} {currentItem?.unitOfMeasure}
                       </option>
                     ))}
                   </select>
@@ -375,8 +331,8 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
               ) : (
                 <div className={styles.formField}>
                   <label className={styles.fieldLabel}>
-                    <span>Almacén de Recepción / Conteo</span>
-                    <span className="tabular-nums" style={{ color: "var(--apple-text-tertiary)" }}>
+                    <span>Sede de Recepción (Destino)</span>
+                    <span className="tabular-nums" style={{ color: "var(--apple-text-secondary)" }}>
                       Actual: {targetStock} {currentItem?.unitOfMeasure}
                     </span>
                   </label>
@@ -394,30 +350,20 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
                 </div>
               )}
 
-              {/* Quantity Stepper & Adjustment Sign */}
+              {/* Quantity Stepper */}
               <div className={styles.formField}>
                 <label className={styles.fieldLabel}>
-                  <span>Cantidad a Mover</span>
+                  <span>Cantidad de Unidades</span>
                   <span className={styles.unitBadge}>{currentItem?.unitOfMeasure}</span>
                 </label>
                 <div className={styles.quantityStepperGroup}>
-                  {operationType === "audit_adjustment" && (
-                    <button
-                      type="button"
-                      className={styles.stepperBtn}
-                      onClick={() => setAdjustmentSign((prev) => (prev === "+" ? "-" : "+"))}
-                      title="Alternar suma / resta de ajuste"
-                    >
-                      {adjustmentSign}
-                    </button>
-                  )}
                   <button
                     type="button"
                     className={styles.stepperBtn}
                     onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
                     aria-label="Restar 1"
                   >
-                    -
+                    −
                   </button>
                   <input
                     type="number"
@@ -438,15 +384,22 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
                 </div>
               </div>
 
-              {/* Balance Preview Card */}
+              {/* Clean Balance Preview */}
               <div className={styles.balancePreviewCard}>
-                <span className={styles.balanceLabel}>Proyección de Saldo:</span>
+                <span className={styles.balanceLabel}>
+                  {operationType === "purchase_reception"
+                    ? "Stock resultante en destino:"
+                    : operationType === "sales_dispatch"
+                    ? "Stock restante en origen:"
+                    : "Stock resultante en origen:"}
+                </span>
                 <div className={styles.balanceTransitions}>
                   <span className="tabular-nums">{projectedInfo.before} {currentItem?.unitOfMeasure}</span>
                   <span className={styles.balanceArrow}>→</span>
                   <span
                     className="tabular-nums"
                     style={{
+                      fontWeight: 600,
                       color: projectedInfo.after >= projectedInfo.before
                         ? "var(--apple-success)"
                         : "var(--apple-warning)",
@@ -460,45 +413,56 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
               {/* Error Warning */}
               {(projectedInfo.error || errorMessage) && (
                 <div className={styles.errorBanner}>
-                  <AlertIcon size={14} color="var(--apple-danger)" />
+                  <AlertIcon size={15} color="var(--apple-danger)" />
                   <span>{projectedInfo.error || errorMessage}</span>
                 </div>
               )}
 
-              {/* Document Reference & Operator */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-                <div className={styles.formField}>
-                  <label className={styles.fieldLabel}>Doc. de Referencia</label>
-                  <input
-                    type="text"
-                    className={styles.textInput}
-                    value={referenceDocument}
-                    onChange={(e) => setReferenceDocument(e.target.value)}
-                    required
-                  />
-                </div>
+              {/* Progressive Disclosure: Collapsible Advanced Fields */}
+              <div className={styles.advancedToggleSection}>
+                <button
+                  type="button"
+                  className={styles.advancedToggleBtn}
+                  onClick={() => setShowAdvanced((prev) => !prev)}
+                >
+                  <span>{showAdvanced ? "▾ Ocultar datos adicionales" : "▸ Opciones adicionales (documento, nota)"}</span>
+                </button>
 
-                <div className={styles.formField}>
-                  <label className={styles.fieldLabel}>Responsable</label>
-                  <input
-                    type="text"
-                    className={styles.textInput}
-                    value={performedBy}
-                    onChange={(e) => setPerformedBy(e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
+                {showAdvanced && (
+                  <div className={styles.advancedFieldsContainer}>
+                    <div className={styles.twoColumnGrid}>
+                      <div className={styles.formField}>
+                        <label className={styles.fieldLabel}>Documento</label>
+                        <input
+                          type="text"
+                          className={styles.textInput}
+                          value={referenceDocument}
+                          onChange={(e) => setReferenceDocument(e.target.value)}
+                        />
+                      </div>
 
-              {/* Notes */}
-              <div className={styles.formField}>
-                <label className={styles.fieldLabel}>Notas / Justificación</label>
-                <textarea
-                  className={styles.textareaInput}
-                  placeholder="Detalles adicionales sobre la transacción..."
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                />
+                      <div className={styles.formField}>
+                        <label className={styles.fieldLabel}>Responsable</label>
+                        <input
+                          type="text"
+                          className={styles.textInput}
+                          value={performedBy}
+                          onChange={(e) => setPerformedBy(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    <div className={styles.formField}>
+                      <label className={styles.fieldLabel}>Nota o Justificación</label>
+                      <textarea
+                        className={styles.textareaInput}
+                        placeholder="Detalle opcional sobre este movimiento..."
+                        value={notes}
+                        onChange={(e) => setNotes(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Footer CTA */}
@@ -511,8 +475,14 @@ export function MovementModal({ isOpen, onClose, preselectedItemId }: MovementMo
                   className={styles.submitBtn}
                   disabled={!projectedInfo.valid}
                 >
-                  <CheckIcon size={14} />
-                  <span>Confirmar Transacción</span>
+                  <CheckIcon size={15} />
+                  <span>
+                    {operationType === "purchase_reception"
+                      ? "Guardar Entrada"
+                      : operationType === "sales_dispatch"
+                      ? "Guardar Salida"
+                      : "Guardar Traslado"}
+                  </span>
                 </button>
               </footer>
             </form>

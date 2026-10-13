@@ -17,10 +17,10 @@ import { MovementModal } from "@/components/operations/MovementModal";
 const SECTION_LABELS: Record<string, string> = {
   overview: "Resumen General",
   catalog: "Catálogo",
-  movements: "Movimientos & Kardex",
-  warehouses: "Almacenes",
+  movements: "Movimientos",
+  warehouses: "Sedes y Bodegas",
   alerts: "Alertas",
-  analytics: "Analítica",
+  analytics: "Métricas",
 };
 
 export function TopToolbar() {

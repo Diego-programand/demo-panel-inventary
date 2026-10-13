@@ -71,9 +71,9 @@ export function BatchActionBar({
         type: "purchase_reception",
         quantity: qty,
         targetLocationId: targetLoc,
-        referenceDocument: `BATCH-ORD-${Math.floor(1000 + Math.random() * 9000)}`,
-        performedBy: "Acción en Lote",
-        notes: `Reabastecimiento masivo para ${item.sku}`,
+        referenceDocument: `Entrada #${Math.floor(100 + Math.random() * 900)}`,
+        performedBy: "Administrador",
+        notes: `Entrada por lote para ${item.name} (${item.sku})`,
       });
     }
 
@@ -113,12 +113,12 @@ export function BatchActionBar({
           {reorderedDone ? (
             <>
               <CheckIcon size={14} />
-              <span>¡Reorden de Lote Aplicado!</span>
+              <span>¡Entrada Registrada!</span>
             </>
           ) : (
             <>
               <PlusIcon size={14} />
-              <span>Reordenar Lote</span>
+              <span>Pedir Más Unidades</span>
             </>
           )}
         </button>
